@@ -27,6 +27,7 @@ public class ChangeAngleRoom : MonoBehaviour
             if (Mathf.Abs(transform.position.x) >= distView && Mathf.Abs(transform.position.z) >= distView)
             {
                 isLerp = false;
+                //cameraMove = false;
             }
             else
             {
