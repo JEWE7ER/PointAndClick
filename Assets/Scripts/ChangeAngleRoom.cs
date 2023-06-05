@@ -1,4 +1,5 @@
 using UnityEngine;
+using static TempValueCamera;
 
 public class ChangeAngleRoom : MonoBehaviour
 {
@@ -8,10 +9,22 @@ public class ChangeAngleRoom : MonoBehaviour
     internal bool cameraMove = false;
     public float distView = 7.98f;
     protected bool isLerp = false;
+    //private static TempValueCamera _camera;
+    private Vector3 targetCamPosition;
+    private Vector3 targetCamRotate;
 
-    //void Start()
-    //{
-    //}
+    void Start()
+    {
+        if (TempValueCamera.GetAngle() != 0)
+        {
+            currentAngle = TempValueCamera.GetAngle();
+            targetCamPosition = TempValueCamera.GetCamPos();
+            transform.position = targetCamPosition;
+            targetCamRotate = TempValueCamera.GetCamRot();
+            transform.eulerAngles = targetCamRotate;
+            TempValueCamera.SetValue(new Vector3(), new Vector3(), 0);
+        }
+    }
 
     //Update is called once per frame
     void Update()
