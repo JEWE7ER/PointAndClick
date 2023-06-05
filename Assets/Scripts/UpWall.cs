@@ -20,8 +20,9 @@ public class UpWall : MonoBehaviour
         CameraLink = GameObject.Find("Main Camera");
         ChangeAngleRoomLink = CameraLink.GetComponent<ChangeAngleRoom>();
         currentAngle = ChangeAngleRoomLink.currentAngle;
-        oldAngle = currentAngle;
-        Update();
+        //oldAngle = currentAngle;
+        //targetPosition = new Vector3(transform.position.x, maxY, transform.position.z);
+        Transform();
     }
 
     // Update is called once per frame
@@ -31,31 +32,39 @@ public class UpWall : MonoBehaviour
         {
             currentAngle = ChangeAngleRoomLink.currentAngle;
             speed = ChangeAngleRoomLink.pSpeed / 2;
-            UpOrDown();
+            if (currentAngle != oldAngle)
+            {
+                UpOrDown();
+            }
             if (moveWall)
             {
                 transform.position = Vector3.Lerp(transform.position, targetPosition, speed * Time.deltaTime);
-                //moveWall = false;
             }
+        }
+    }
+
+    void Transform()
+    {
+        UpOrDown();
+        if (moveWall)
+        {
+            transform.position = targetPosition;
+            moveWall = false;
         }
     }
 
     void UpOrDown()
     {
-        if (currentAngle != oldAngle)
+        if (((numWall - currentAngle > 1) || ((numWall - currentAngle < 0) && (numWall - currentAngle > -3))) && transform.position.y > maxY - 2)
         {
-            if (((numWall - currentAngle > 1) || ((numWall - currentAngle < 0) && (numWall - currentAngle > -3))) && transform.position.y > maxY - 2)
-            {
-                targetPosition = new Vector3(transform.position.x, minY, transform.position.z);
-                moveWall = true;
-            }
-            else if (((numWall - currentAngle == 1) || (numWall - currentAngle == 0) || (numWall - currentAngle == -3)) && transform.position.y < minY + 2)
-            {
-                targetPosition = new Vector3(transform.position.x, maxY, transform.position.z);
-                moveWall = true;
-            }
-            oldAngle = currentAngle;
+            targetPosition = new Vector3(transform.position.x, minY, transform.position.z);
+            moveWall = true;
         }
-        
+        else if (((numWall - currentAngle == 1) || (numWall - currentAngle == 0) || (numWall - currentAngle == -3)) && transform.position.y < minY + 2)
+        {
+            targetPosition = new Vector3(transform.position.x, maxY, transform.position.z);
+            moveWall = true;
+        }
+        oldAngle = currentAngle;
     }
 }
