@@ -4,14 +4,16 @@ using UnityEngine;
 
 public class ChangeAngleRoom : MonoBehaviour
 {
-    public GameObject targetObject;
-
     internal int currentAngle = 1;
     Vector3 targetPosition;
     public float pSpeed = 10.0f;
-    internal bool camera_move_enabled = false;
+    internal bool cameraMove = false;
     public float distView = 7.98f;
     protected bool isLerp = false;
+
+    //void Start()
+    //{
+    //}
 
     //Update is called once per frame
     void Update()
@@ -21,16 +23,20 @@ public class ChangeAngleRoom : MonoBehaviour
 
     protected void DoMove()
     {
-        if (camera_move_enabled)
+        if (cameraMove)
         {
-            targetObject.transform.position = Vector3.Lerp(transform.position, targetPosition, pSpeed * Time.deltaTime);
-            if (Mathf.Abs(targetObject.transform.position.x) >= distView && Mathf.Abs(targetObject.transform.position.z) >= distView)
+            transform.position = Vector3.Lerp(transform.position, targetPosition, pSpeed * Time.deltaTime);
+            if (Mathf.Abs(transform.position.x) >= distView && Mathf.Abs(transform.position.z) >= distView)
             {
                 isLerp = false;
             }
             else
             {
                 isLerp = true;
+                if (distView - Mathf.Abs(transform.position.x) <= 1/1e3 && distView - Mathf.Abs(transform.position.z) <= 1 / 1e3)
+                {
+                    transform.position = targetPosition;
+                }
             }
         }
         if (!isLerp)
@@ -58,29 +64,27 @@ public class ChangeAngleRoom : MonoBehaviour
 
     protected void MoveRight()
     {
-        var coord = targetObject.transform.position;
         if (currentAngle % 2 == 1)
         {
-            targetPosition = new Vector3(coord.x, coord.y, -coord.z);
+            targetPosition = new Vector3(transform.position.x, transform.position.y, -transform.position.z);
         }
         else if (currentAngle % 2 == 0)
         {
-            targetPosition = new Vector3(-coord.x, coord.y, coord.z);
+            targetPosition = new Vector3(-transform.position.x, transform.position.y, transform.position.z);
         }
-        camera_move_enabled = true;
+        cameraMove = true;
     }
 
     protected void MoveLeft()
     {
-        var coord = targetObject.transform.position;
         if (currentAngle % 2 == 1)
         {
-            targetPosition = new Vector3(-coord.x, coord.y, coord.z);
+            targetPosition = new Vector3(-transform.position.x, transform.position.y, transform.position.z);
         }
         else if (currentAngle % 2 == 0)
         {
-            targetPosition = new Vector3(coord.x, coord.y, -coord.z);
+            targetPosition = new Vector3(transform.position.x, transform.position.y, -transform.position.z);
         }
-        camera_move_enabled = true;
+        cameraMove = true;
     }
 }

@@ -5,7 +5,6 @@ using UnityEngine;
 public class UpAngle : MonoBehaviour
 {
     protected GameObject CameraLink;
-    public GameObject targetObject;
     Vector3 targetPosition;
     private ChangeAngleRoom ChangeAngleRoomLink;
     protected int currentAngle;
@@ -23,19 +22,20 @@ public class UpAngle : MonoBehaviour
         ChangeAngleRoomLink = CameraLink.GetComponent<ChangeAngleRoom>();
         currentAngle = ChangeAngleRoomLink.currentAngle;
         oldAngle = currentAngle;
+        Update();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (ChangeAngleRoomLink.camera_move_enabled)
+        if (ChangeAngleRoomLink.cameraMove)
         {
             currentAngle = ChangeAngleRoomLink.currentAngle;
             speed = ChangeAngleRoomLink.pSpeed / 2;
             UpOrDown();
             if (moveAngle)
             {
-                targetObject.transform.position = Vector3.Lerp(transform.position, targetPosition, speed * Time.deltaTime);
+                transform.position = Vector3.Lerp(transform.position, targetPosition, speed * Time.deltaTime);
             }
         }
     }
@@ -46,19 +46,15 @@ public class UpAngle : MonoBehaviour
         {
             if (numAngle != currentAngle)
             {
-                var coord = targetObject.transform.position;
-                targetPosition = new Vector3(coord.x, minY, coord.z);
+                targetPosition = new Vector3(transform.position.x, minY, transform.position.z);
                 moveAngle = true;
             }
             else
             {
-                var coord = targetObject.transform.position;
-                targetPosition = new Vector3(coord.x, maxY, coord.z);
+                targetPosition = new Vector3(transform.position.x, maxY, transform.position.z);
                 moveAngle = true;
             }
             oldAngle = currentAngle;
-
         }
-
     }
 }

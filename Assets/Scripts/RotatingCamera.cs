@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class RotatingCamera : MonoBehaviour
 {
-    public GameObject targetObject;
     private ChangeAngleRoom ChangeAngleRoomLink;
     private float targetAngle = 0;
     const float rotationAmount = 1.5f;
@@ -42,22 +41,20 @@ public class RotatingCamera : MonoBehaviour
     protected void Rotate()
     {
 
-        float step = rSpeed * Time.deltaTime;
-        float orbitCircumfrance = 2F * rDistance * Mathf.PI;
-        float distanceDegrees = (rSpeed / orbitCircumfrance) * 360;
-        float distanceRadians = (rSpeed / orbitCircumfrance) * 2 * Mathf.PI;
+        //float step = rSpeed * Time.deltaTime;
+        //float orbitCircumfrance = 2F * rDistance * Mathf.PI;
+        //float distanceDegrees = (rSpeed / orbitCircumfrance) * 360;
+        //float distanceRadians = (rSpeed / orbitCircumfrance) * 2 * Mathf.PI;
 
         if (targetAngle > 0)
         {
-            transform.RotateAround(targetObject.transform.position, Vector3.up, -rotationAmount);
+            transform.RotateAround(transform.position, Vector3.up, -rotationAmount);
             targetAngle -= rotationAmount;
         }
         else if (targetAngle < 0)
         {
-            transform.RotateAround(targetObject.transform.position, Vector3.up, rotationAmount);
+            transform.RotateAround(transform.position, Vector3.up, rotationAmount);
             targetAngle += rotationAmount;
         }
-        Debug.Log("Current Angle rot:" + currentAngle);
-        Debug.Log("Current Angle move:" + ChangeAngleRoomLink.currentAngle);
     }
 }
