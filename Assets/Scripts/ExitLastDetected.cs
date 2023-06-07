@@ -8,15 +8,24 @@ public class ExitLastDetected : MonoBehaviour
     private ChangeAngleRoom ChangeAngleRoomLink;
     protected GameObject ScenesLink;
     private Scenes scene;
+    private bool onSpriteDown = false;
     private void OnMouseDown()
     {
         CameraLink = GameObject.Find("Main Camera");
         ChangeAngleRoomLink = CameraLink.GetComponent<ChangeAngleRoom>();
-        currentAngle = ChangeAngleRoomLink.currentAngle;
-        TempValueCamera.SetValue(CameraLink.transform.position, CameraLink.transform.eulerAngles, currentAngle);
-
-        ScenesLink = GameObject.Find("RoomChanger");
-        scene = ScenesLink.GetComponent<Scenes>();
-        scene.PrevRoom();
+        if (!ChangeAngleRoomLink.cameraMove)
+        {
+            currentAngle = ChangeAngleRoomLink.currentAngle;
+            TempValueCamera.SetValue(CameraLink.transform.position, CameraLink.transform.eulerAngles, currentAngle, onSpriteDown);
+            ScenesLink = GameObject.Find("RoomChanger");
+            scene = ScenesLink.GetComponent<Scenes>();
+            scene.PrevRoom();
+        }
+    }
+    public void OnSpriteDown()
+    {
+        onSpriteDown = true;
+        OnMouseDown();
+        onSpriteDown = false;
     }
 }

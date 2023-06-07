@@ -31,7 +31,7 @@ public class UpWall : MonoBehaviour
         if (ChangeAngleRoomLink.cameraMove)
         {
             currentAngle = ChangeAngleRoomLink.currentAngle;
-            speed = ChangeAngleRoomLink.pSpeed / 2;
+            speed = ChangeAngleRoomLink.pSpeed + 0.5f;
             if (currentAngle != oldAngle)
             {
                 UpOrDown();

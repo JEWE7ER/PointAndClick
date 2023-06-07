@@ -28,7 +28,7 @@ public class UpAngle : MonoBehaviour
     void Update()
     {
         currentAngle = ChangeAngleRoomLink.currentAngle;
-        speed = ChangeAngleRoomLink.pSpeed / 2;
+        speed = ChangeAngleRoomLink.pSpeed + 0.5f;
         if (currentAngle != oldAngle)
         {
             UpOrDown();
