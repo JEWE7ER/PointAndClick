@@ -3,33 +3,42 @@ using UnityEngine;
 
 public static class TempValueCamera
 {
-    private static Vector3 cameraPosition;
-    private static Vector3 cameraRotate;
-    private static int currentAngle;
-    private static bool onSpriteDown;
-    public static void SetValue(Vector3 targetPosition, Vector3 targetAngle, int angle, bool onSprite)
+    private static Vector3 _cameraPosition;
+    private static Vector3 _cameraRotate;
+    private static int _currentAngle;
+    private static bool _onSpriteDown;
+    private static int _numWall;
+
+    public static void SetValue(Vector3 cameraPosition, Vector3 cameraRotate, 
+        int currentAngle, bool onSpriteDown, int numWall)
     {
-        cameraPosition = targetPosition;
-        cameraRotate = targetAngle;
-        currentAngle = angle;
-        onSpriteDown = onSprite;
+        _cameraPosition = cameraPosition;
+        _cameraRotate = cameraRotate;
+        _currentAngle = currentAngle;
+        _onSpriteDown = onSpriteDown;
+        _numWall = numWall;
     }
 
     public static int GetAngle()
     {
-        return currentAngle;
+        return _currentAngle;
+    }
+
+    public static int GetNumWall()
+    {
+        return _numWall;
     }
 
     public static Vector3 GetCamPos()
     {
-        return cameraPosition;
+        return _cameraPosition;
     }
     public static Vector3 GetCamRot()
     {
-        return cameraRotate;
+        return _cameraRotate;
     }
     public static bool GetSpriteDown()
     {
-        return onSpriteDown;
+        return _onSpriteDown;
     }
 }
