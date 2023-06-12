@@ -5,15 +5,17 @@ using static TempValueCamera;
 public class ChangeAngleRoom : MonoBehaviour
 {
     internal int currentAngle = 1;
-    Vector3 targetPosition;
-    public float pSpeed = 7.5f;
+    internal bool isLerp = false;
+
     private bool startMove = false;
-    internal bool cameraMove = false;
-    public float distView = 7.991f;
-    protected bool isLerp = false;
+    private bool cameraMove = false;
+    private Vector3 targetPosition;
     private Vector3 targetRotate;
-    private float difDistX = 0;
-    private float difDistZ = 0;
+    private float difDistX;
+    private float difDistZ;
+
+    public float distView = 7.991f;
+    public float pSpeed = 7.5f;
 
     void Start()
     {
@@ -24,113 +26,105 @@ public class ChangeAngleRoom : MonoBehaviour
             currentAngle = TempValueCamera.GetAngle();
             targetRotate = TempValueCamera.GetCamRot();
             transform.eulerAngles = targetRotate;
-            //pSpeed /= 2;
-            LerpToStart();
+            MoveToStart();
             startMove = true;
-            TempValueCamera.SetValue(new Vector3(), new Vector3(), 0, false);
+            isLerp = true;
+            TempValueCamera.SetValue(Vector3.zero, Vector3.zero, 0, false, 0);
         }
+        EngineSwipe.SwipeEvent += OnSwipe;
     }
 
-    //Update is called once per frame
     void Update()
     {
         if (cameraMove || startMove)
         {
-            transform.position = Vector3.Lerp(transform.position, targetPosition, pSpeed * Time.deltaTime);
-            if (startMove)
+            if (cameraMove)
             {
-                startMove = false;
-                cameraMove = true;
-                //pSpeed *= 2;
-            }
-            //if (Mathf.Abs(transform.position.x) >= distView && Mathf.Abs(transform.position.z) >= distView)
-            //{
-            //    isLerp = false;
-            //    cameraMove = false;
-            //}
-            if (Mathf.Abs(distView - Mathf.Abs(transform.position.x)) <= difDistX + 1 / 1e4 &&
-                Mathf.Abs(distView - Mathf.Abs(transform.position.z)) <= difDistZ + 1 / 1e4)
-            {
-                transform.position = targetPosition;
-                isLerp = false;
-                cameraMove = false;
+                transform.position = Vector3.Lerp(transform.position, targetPosition, pSpeed * Time.deltaTime);
+                if (Mathf.Abs(distView - Mathf.Abs(transform.position.x)) <= difDistX + 1 / 1e4 &&
+                    Mathf.Abs(distView - Mathf.Abs(transform.position.z)) <= difDistZ + 1 / 1e4)
+                {
+                    transform.position = targetPosition;
+                    isLerp = false;
+                    cameraMove = false;
+                }
+                else
+                {
+                    isLerp = true;
+                }
             }
             else
             {
-                isLerp = true;
-                //if (distView - Mathf.Abs(transform.position.x) <= 9 / 1e2 && distView - Mathf.Abs(transform.position.z) <= 9 / 1e2)
-                //{
-                //    transform.position = targetPosition;
-                //}
+                transform.position = Vector3.MoveTowards(transform.position, targetPosition, pSpeed * 2 * Time.deltaTime);
+                if (transform.position == targetPosition)
+                {
+                    startMove = false;
+                    isLerp = false;
+                }
             }
         }
         if (!isLerp)
         {
             if (Input.GetKeyDown(KeyCode.LeftArrow))
-            {
                 MoveLeft();
-                currentAngle--;
-                if (currentAngle == 0)
-                {
-                    currentAngle = 4;
-                }
-            }
             else if (Input.GetKeyDown(KeyCode.RightArrow))
-            {
                 MoveRight();
-                currentAngle++;
-                if (currentAngle == 5)
-                {
-                    currentAngle = 1;
-                }
-            }
         }
     }
 
-    protected void LerpToStart()
+    private void MoveToStart()
     {
         targetPosition = TempValueCamera.GetCamPos();
         Vector3 startPosition;
-        float distanceForLerp = 8;
-        if (currentAngle == 1 || currentAngle == 4 || TempValueCamera.GetSpriteDown())
-        {
+        float distanceForLerp = 4;
+        if ((currentAngle == 1 || currentAngle == 4 || TempValueCamera.GetSpriteDown()) &&
+            !((currentAngle == 1 || currentAngle == 4) && TempValueCamera.GetSpriteDown()))
             distanceForLerp *= -1;
-        }
-        if (currentAngle % 2 == 0)
-        {
+
+        if (currentAngle % 2 == 0 && TempValueCamera.GetNumWall() % 2 == 0)
             startPosition = new Vector3(targetPosition.x + distanceForLerp, targetPosition.y, targetPosition.z);
-        }
         else
-        {
             startPosition = new Vector3(targetPosition.x, targetPosition.y, targetPosition.z + distanceForLerp);
-        }
-        //transform.position = Vector3.Lerp(startPosition, targetPosition, pSpeed/2 * Time.deltaTime);
+
         transform.position = startPosition;
     }
 
-    protected void MoveRight()
+    private void MoveRight()
     {
         if (currentAngle % 2 == 1)
-        {
             targetPosition = new Vector3(transform.position.x, transform.position.y, -transform.position.z);
-        }
         else if (currentAngle % 2 == 0)
-        {
             targetPosition = new Vector3(-transform.position.x, transform.position.y, transform.position.z);
-        }
+
+        currentAngle++;
+        if (currentAngle == 5)
+            currentAngle = 1;
+
         cameraMove = true;
     }
 
-    protected void MoveLeft()
+    private void MoveLeft()
     {
         if (currentAngle % 2 == 1)
-        {
             targetPosition = new Vector3(-transform.position.x, transform.position.y, transform.position.z);
-        }
         else if (currentAngle % 2 == 0)
-        {
             targetPosition = new Vector3(transform.position.x, transform.position.y, -transform.position.z);
-        }
+
+        currentAngle--;
+        if (currentAngle == 0)
+            currentAngle = 4;
+
         cameraMove = true;
+    }
+
+    internal void OnSwipe(Vector2 direction)
+    {
+        if (!isLerp)
+        {
+            if (direction.x > 0)
+                MoveLeft();
+            else if (direction.x < 0)
+                MoveRight();
+        }
     }
 }
