@@ -4,22 +4,29 @@ using static TempValueCamera;
 public class ExitLastDetected : MonoBehaviour
 {
     private GameObject CameraLink;
-    private int currentAngle = 0;
     private ChangeAngleRoom ChangeAngleRoomLink;
-    protected GameObject ScenesLink;
+    private int currentAngle = 0;
+    private GameObject ScenesLink;
     private Scenes scene;
+    private GameObject WallLink;
+    private UpWall wall;
     private bool onSpriteDown = false;
+
     private void OnMouseDown()
     {
+        WallLink = GameObject.Find(transform.parent.parent.name);
+        wall = WallLink.GetComponent<UpWall>();
         CameraLink = GameObject.Find("Main Camera");
         ChangeAngleRoomLink = CameraLink.GetComponent<ChangeAngleRoom>();
-        if (!ChangeAngleRoomLink.cameraMove)
+        currentAngle = ChangeAngleRoomLink.currentAngle;
+        if (!ChangeAngleRoomLink.isLerp)
         {
-            currentAngle = ChangeAngleRoomLink.currentAngle;
-            TempValueCamera.SetValue(CameraLink.transform.position, CameraLink.transform.eulerAngles, currentAngle, onSpriteDown);
+            TempValueCamera.SetValue(CameraLink.transform.position, CameraLink.transform.eulerAngles,
+                currentAngle, onSpriteDown, wall.numWall);
             ScenesLink = GameObject.Find("RoomChanger");
             scene = ScenesLink.GetComponent<Scenes>();
             scene.PrevRoom();
+            EngineSwipe.SwipeEvent -= ChangeAngleRoomLink.OnSwipe;
         }
     }
     public void OnSpriteDown()
