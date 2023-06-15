@@ -7,7 +7,7 @@ public class UPandDownWall : MonoBehaviour
     protected GameObject CameraLink;
     public GameObject targetObject;
     Vector3 targetPosition;
-    private ChangeAngleRoom ChangeAngleRoomLink;
+    private RotateRoom ChangeAngleRoomLink;
     private RotatingCamera_2 RotatingCamera_2_Link;
     protected int currentAngle;
     protected int oldAngle;
