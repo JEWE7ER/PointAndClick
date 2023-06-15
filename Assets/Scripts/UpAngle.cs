@@ -2,13 +2,11 @@ using UnityEngine;
 
 public class UpAngle : MonoBehaviour
 {
-    private GameObject CameraLink;
+    private Camera cam;
     private Vector3 targetPosition;
-    private ChangeAngleRoom ChangeAngleRoomLink;
     private int currentAngle;
     private int oldAngle;
     private bool moveAngle = false;
-    private float speed;
 
     public int numAngle;
     public float minY = 2.8f;
@@ -16,22 +14,23 @@ public class UpAngle : MonoBehaviour
 
     void Start()
     {
-        CameraLink = GameObject.Find("Main Camera");
-        ChangeAngleRoomLink = CameraLink.GetComponent<ChangeAngleRoom>();
-        currentAngle = ChangeAngleRoomLink.currentAngle;
+        cam = Camera.main;
+        currentAngle = cam.GetComponent<RotateRoom>().currentAngle;
         Transform();
     }
 
-    void Update()
+    void FixedUpdate()
     {
-        if (ChangeAngleRoomLink.isLerp)
+        if (cam.GetComponent<RotateRoom>().cameraMove || moveAngle)
         {
-            currentAngle = ChangeAngleRoomLink.currentAngle;
-            speed = ChangeAngleRoomLink.pSpeed + 0.5f;
+            currentAngle = cam.GetComponent<RotateRoom>().currentAngle;
             if (currentAngle != oldAngle)
                 UpOrDown();
             if (moveAngle)
-                transform.position = Vector3.Lerp(transform.position, targetPosition, speed * Time.deltaTime);
+                transform.position = Vector3.MoveTowards(transform.position, targetPosition, cam.GetComponent<RotateRoom>().speed * 7.5f * Time.deltaTime);
+
+            if (transform.position == targetPosition)
+                moveAngle = false;
         }
     }
 

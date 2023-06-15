@@ -2,13 +2,11 @@ using UnityEngine;
 
 public class UpWall : MonoBehaviour
 {
-    private GameObject CameraLink;
+    private Camera cam;
     private Vector3 targetPosition;
-    private ChangeAngleRoom ChangeAngleRoomLink;
     private int currentAngle;
     private int oldAngle;
     private bool moveWall = false;
-    private float speed;
 
     public int numWall;
     public float minY = 2.8f;
@@ -16,22 +14,24 @@ public class UpWall : MonoBehaviour
 
     void Start()
     {
-        CameraLink = GameObject.Find("Main Camera");
-        ChangeAngleRoomLink = CameraLink.GetComponent<ChangeAngleRoom>();
-        currentAngle = ChangeAngleRoomLink.currentAngle;
+        cam = Camera.main;
+        currentAngle = cam.GetComponent<RotateRoom>().currentAngle;
         Transform();
     }
 
-    void Update()
+    void FixedUpdate()
     {
-        if (ChangeAngleRoomLink.isLerp)
+        if (cam.GetComponent<RotateRoom>().cameraMove || moveWall)
         {
-            currentAngle = ChangeAngleRoomLink.currentAngle;
-            speed = ChangeAngleRoomLink.pSpeed + 0.5f;
+            currentAngle = cam.GetComponent<RotateRoom>().currentAngle;
             if (currentAngle != oldAngle)
                 UpOrDown();
+
             if (moveWall)
-                transform.position = Vector3.Lerp(transform.position, targetPosition, speed * Time.deltaTime);
+                transform.position = Vector3.MoveTowards(transform.position, targetPosition, cam.GetComponent<RotateRoom>().speed * 7.5f * Time.deltaTime);
+
+            if (transform.position == targetPosition)
+                moveWall = false;
         }
     }
 
