@@ -2,21 +2,21 @@ using UnityEngine;
 
 public class RotatingCamera : MonoBehaviour
 {
-    private ChangeAngleRoom ChangeAngleRoomLink;
+    private RotateRoom ChangeAngleRoomLink;
     private float targetAngle = 0;
     private const float rotationAmount = 1.5f;
     private int currentAngle;
 
     void Start()
     {
-        ChangeAngleRoomLink = GetComponent<ChangeAngleRoom>();
+        ChangeAngleRoomLink = GetComponent<RotateRoom>();
         currentAngle = ChangeAngleRoomLink.currentAngle;
     }
 
     //Update is called once per frame
     void Update()
     {
-        if (ChangeAngleRoomLink.isLerp)
+        if (ChangeAngleRoomLink.cameraMove)
         {
             if ((currentAngle - ChangeAngleRoomLink.currentAngle > 0 && currentAngle - ChangeAngleRoomLink.currentAngle != 3) ||
                currentAngle - ChangeAngleRoomLink.currentAngle == -3)
