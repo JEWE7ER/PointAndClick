@@ -1,53 +1,39 @@
-using System.Threading;
-using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class ZoomObjects : MonoBehaviour
 {
     private Camera cam;
+    private GameObject target;
     private static Vector3 DefaultPositionCamera;
     private static Vector3 DefaultRotateCamera;
-    private Vector3 PositionPoint;
-    private Vector3 RotatePoint;
     private bool moveToPoint = false;
     private bool moveToDefault = false;
-    private float fullLen;
-    private float boost = 6;
-    private bool isBoost = false;
-    private float rSpeed;
-    private float coefLen;
-    //private static Button hideButton;
+    private bool SuccessRotate = false;
+    private float coefficient;
 
     public Canvas hideCanvas;
-    public float positionX;
-    public float positionY;
-    public float positionZ;
-    public float rotateX;
-    public float rotateY;
-    public float rotateZ;
+    [SerializeField()] Vector3 PositionPoint;
+    [SerializeField()] Vector3 RotatePoint;
     public float speed;
+    public GameObject targetObject;
 
     void Start()
     {
         cam = Camera.main;
-        //hideButton = button;
+        target = GameObject.FindGameObjectWithTag("TargetCamera");
         hideCanvas.enabled = false;
-        rSpeed = speed;
-        //coefLen = 2.0f/3.0f;
-        //PositionPoint = new Vector3(positionX, positionY, positionZ);
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
         if (moveToPoint)
-            MoveCamera(ref moveToPoint, PositionPoint, RotatePoint);
+            MoveCamera(ref moveToPoint, target);
 
         else if (moveToDefault)
         {
-            MoveCamera(ref moveToDefault, DefaultPositionCamera, DefaultRotateCamera);
+            MoveCamera(ref moveToDefault, target);
             if (!moveToDefault)
-                cam.GetComponent<ChangeAngleRoom>().isLerp = false;
+                cam.GetComponent<RotateRoom>().zoom = false;
 
         }
     }
@@ -59,12 +45,10 @@ public class ZoomObjects : MonoBehaviour
             DefaultRotateCamera = cam.transform.eulerAngles;
             moveToPoint = true;
             hideCanvas.enabled = true;
-            PositionPoint = new Vector3(positionX, positionY, positionZ);
-            RotatePoint = new Vector3(rotateX, rotateY, rotateZ);
-            FullLength(DefaultPositionCamera, PositionPoint);
-            coefLen = 1.0f / 3.0f;
-
-            cam.GetComponent<ChangeAngleRoom>().isLerp = true;
+            coefficient = 1.5f;
+            target.transform.position = PositionPoint;
+            target.transform.eulerAngles = RotatePoint;
+            cam.GetComponent<RotateRoom>().zoom = true;
         }
     }
 
@@ -72,38 +56,22 @@ public class ZoomObjects : MonoBehaviour
     {
         moveToDefault = true;
         hideCanvas.enabled = false;
-        coefLen = 3.0f / 4.0f;
-        //FullLength(PositionPoint, DefaultPositionCamera);
+        target.transform.position = DefaultPositionCamera;
+        target.transform.eulerAngles = DefaultRotateCamera;
+        coefficient = 2.5f;
     }
 
-    private void FullLength(Vector3 startPosition, Vector3 targetPosition)
+    private void MoveCamera(ref bool move, GameObject target)
     {
-        fullLen = Mathf.Sqrt(Mathf.Pow(startPosition.x - targetPosition.x, 2) + Mathf.Pow(startPosition.y - targetPosition.y, 2) +
-                             Mathf.Pow(startPosition.z - targetPosition.z, 2));
-    }
-
-    private void MoveCamera(ref bool move, Vector3 targetPosition, Vector3 targetRotate)
-    {
-        float len = Mathf.Sqrt(Mathf.Pow(cam.transform.position.x - targetPosition.x, 2) + Mathf.Pow(cam.transform.position.y - targetPosition.y, 2) +
-                               Mathf.Pow(cam.transform.position.z - targetPosition.z, 2));
-        cam.transform.position = Vector3.MoveTowards(cam.transform.position, targetPosition, speed * Time.deltaTime);
-        if (len < fullLen * coefLen && cam.transform.eulerAngles != targetRotate && !isBoost)
-        {
-            speed /= 2;
-            boost += 4;
-            isBoost = true;
-        }
-
-        cam.transform.eulerAngles = Vector3.MoveTowards(cam.transform.eulerAngles, targetRotate, rSpeed * boost * Time.deltaTime);
-        if (cam.transform.position == targetPosition && cam.transform.eulerAngles == targetRotate)
+        cam.transform.position = Vector3.MoveTowards(cam.transform.position, target.transform.position, speed * Time.deltaTime);
+        if (cam.transform.rotation != target.transform.rotation)
+            cam.transform.rotation = Quaternion.RotateTowards(cam.transform.rotation, target.transform.rotation, speed * coefficient * Time.deltaTime);
+        else
+            SuccessRotate = true;
+        if (cam.transform.position == target.transform.position && SuccessRotate)
         {
             move = false;
-            if (isBoost)
-            {
-                speed *= 2;
-                boost -= 4;
-                isBoost = false;
-            }
+            SuccessRotate = false;
         }
     }
 }
