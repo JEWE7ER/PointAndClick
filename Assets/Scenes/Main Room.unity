@@ -257,7 +257,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   numAngle: 2
   minY: 2.8
-  maxY: 10
+  maxY: 12
 --- !u!1 &102807322 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 100000, guid: 9bf4de058454314468ca2f6aa1ff29d6, type: 3}
@@ -509,7 +509,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   numAngle: 3
   minY: 0.525615
-  maxY: 10
+  maxY: 12
 --- !u!1 &432324039 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 100000, guid: 9bf4de058454314468ca2f6aa1ff29d6, type: 3}
@@ -529,7 +529,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   numAngle: 4
   minY: 0.525615
-  maxY: 10
+  maxY: 12
 --- !u!1001 &439258462
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -737,7 +737,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   numAngle: 4
   minY: 2.8
-  maxY: 10
+  maxY: 12
 --- !u!1 &538906255
 GameObject:
   m_ObjectHideFlags: 0
@@ -867,7 +867,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   numWall: 2
   minY: 2.8
-  maxY: 10
+  maxY: 12
 --- !u!4 &541605575 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2613595164003325952, guid: 8cc3f15826c4c1c4094cf00a76f4b5ec, type: 3}
@@ -1736,7 +1736,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   numWall: 1
   minY: 2.8
-  maxY: 10
+  maxY: 12
 --- !u!1001 &938198215
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1834,7 +1834,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   numWall: 3
   minY: 0.6
-  maxY: 7.8
+  maxY: 9.8
 --- !u!54 &938198219
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1875,8 +1875,7 @@ GameObject:
   - component: {fileID: 963194228}
   - component: {fileID: 963194227}
   - component: {fileID: 963194226}
-  - component: {fileID: 963194229}
-  - component: {fileID: 963194230}
+  - component: {fileID: 963194231}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -1917,7 +1916,7 @@ Camera:
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
-  field of view: 60
+  field of view: 25
   orthographic: 0
   orthographic size: 5
   m_Depth: -1
@@ -1942,16 +1941,16 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
-  m_LocalRotation: {x: 0.23911765, y: -0.3696438, z: 0.09904577, w: 0.89239913}
-  m_LocalPosition: {x: 8, y: 6, z: -8}
+  m_LocalRotation: {x: 0.19996412, y: -0.3736123, z: 0.08282785, w: 0.90198}
+  m_LocalPosition: {x: 16, y: 11.8, z: -16}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1277529926}
   m_Father: {fileID: 1424370684}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 30, y: -45, z: 0}
---- !u!114 &963194229
+  m_LocalEulerAnglesHint: {x: 25, y: -45, z: 0}
+--- !u!114 &963194231
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1963,20 +1962,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b2ad56a13d905934a8b9b852f630ea2c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  distView: 7.991
-  pSpeed: 7.5
---- !u!114 &963194230
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 963194225}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 102afe9b8c18b1e46a36d3ee5e9a2523, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  rotation: {x: 0, y: 90, z: 0}
+  speed: 2
 --- !u!1 &1055054705 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 100000, guid: 9bf4de058454314468ca2f6aa1ff29d6, type: 3}
@@ -2193,7 +2180,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   numAngle: 3
   minY: 2.8
-  maxY: 10
+  maxY: 12
 --- !u!1001 &1118291057
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2290,7 +2277,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   numAngle: 4
   minY: 0.525615
-  maxY: 10
+  maxY: 12
 --- !u!1 &1140318572
 GameObject:
   m_ObjectHideFlags: 0
@@ -2448,7 +2435,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   numAngle: 1
   minY: 0.525615
-  maxY: 10
+  maxY: 12
 --- !u!1 &1192919684
 GameObject:
   m_ObjectHideFlags: 0
@@ -2570,7 +2557,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   numAngle: 3
   minY: 0.525615
-  maxY: 10
+  maxY: 12
 --- !u!1 &1277529923
 GameObject:
   m_ObjectHideFlags: 0
@@ -2624,7 +2611,7 @@ Camera:
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
-  field of view: 60
+  field of view: 25
   orthographic: 0
   orthographic size: 5
   m_Depth: 0
@@ -3251,7 +3238,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   numAngle: 2
   minY: 0.525615
-  maxY: 10
+  maxY: 12
 --- !u!1 &1771579038
 GameObject:
   m_ObjectHideFlags: 0
@@ -3406,7 +3393,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   numAngle: 4
   minY: 0.525615
-  maxY: 10
+  maxY: 12
 --- !u!1 &1886762671
 GameObject:
   m_ObjectHideFlags: 0
@@ -3632,7 +3619,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   numAngle: 4
   minY: 0.525615
-  maxY: 10
+  maxY: 12
 --- !u!4 &1957918160 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: 9bf4de058454314468ca2f6aa1ff29d6, type: 3}
@@ -3652,7 +3639,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   numAngle: 2
   minY: 0.525615
-  maxY: 10
+  maxY: 12
 --- !u!1 &2004357717
 GameObject:
   m_ObjectHideFlags: 0
@@ -3782,7 +3769,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   numWall: 4
   minY: 2.8
-  maxY: 10
+  maxY: 12
 --- !u!1 &2026998381
 GameObject:
   m_ObjectHideFlags: 0
@@ -3881,12 +3868,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 1055054705}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: db9d5d2439138bb448e4d8a271aef7a7, type: 3}
+  m_Script: {fileID: 11500000, guid: 3dfb1642e5baca14eba9729a139f1b8d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  numWall: 3
+  numAngle: 3
   minY: 0.525615
-  maxY: 10
+  maxY: 12
 --- !u!1001 &2114820291
 PrefabInstance:
   m_ObjectHideFlags: 0
