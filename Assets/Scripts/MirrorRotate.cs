@@ -19,7 +19,11 @@ public class MirrorRotate : MonoBehaviour
     void OnMouseDown()
     {
         a = true;
-        i = 0;
+        if (i > 9)
+        {
+            i = 0;
+
+        }
     }
     void FixedUpdate()
     {

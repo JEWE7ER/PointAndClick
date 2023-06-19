@@ -17,11 +17,15 @@ public class CubeRotation : MonoBehaviour
     void OnMouseDown()
     {
         a = true;
-        i = 0;
+        if (i > 9)
+        {
+            i = 0;
+            
+        }
+       
     }
     void FixedUpdate()
     {
-        
         if (a)
         {
             transform.Rotate(rotate * Time.deltaTime * 5.0f);
@@ -33,5 +37,6 @@ public class CubeRotation : MonoBehaviour
             manager.win();
             
         }
+
     }
 }

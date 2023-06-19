@@ -6,7 +6,7 @@ using System;
 public class ManagerMirror : MonoBehaviour
 {
     public MirrorRotate[] mirror;
-    private bool isWin = false;
+    public bool isWin = false;
     //Vector3(330,0,90) Vector3(330,0,90)
     //Vector3(340.000031,180,270) Vector3(330.000031,180,270)
     //Vector3(330,0,90) Vector3(330,0,90)
