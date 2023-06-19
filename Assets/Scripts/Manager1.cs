@@ -8,7 +8,7 @@ public class Manager1 : MonoBehaviour
 {
     public CubeRotation[] cube;
     public bool isWin = false;
-
+   
     public void win()
     {
         
@@ -32,10 +32,13 @@ public class Manager1 : MonoBehaviour
     // Update is called once per frame
     public void Update()
     {
+        
         if (isWin)
-        {
-            //cube[2].transform.position = new Vector3((float)-0.824000001, (float)2.93899989, (float)4.40838623) * Time.deltaTime;
-            cube[2].transform.position = Vector3.Lerp(cube[2].transform.position, new Vector3((float)-0.824000001, (float)2.938999, (float)4.40838623), Time.deltaTime * 0.9f);
+        { 
+                //cube[2].transform.position = new Vector3((float)-0.824000001, (float)2.93899989, (float)4.40838623) * Time.deltaTime;
+                cube[2].transform.position = Vector3.Lerp(cube[2].transform.position, new Vector3((float)-0.824000001, (float)2.938999, (float)4.40838623), Time.deltaTime * 0.9f);
+         
+            
         }
     }
 }
