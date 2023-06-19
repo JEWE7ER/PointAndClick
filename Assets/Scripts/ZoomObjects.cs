@@ -1,4 +1,6 @@
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ZoomObjects : MonoBehaviour
 {
@@ -10,18 +12,18 @@ public class ZoomObjects : MonoBehaviour
     private bool moveToDefault = false;
     private bool SuccessRotate = false;
     private float coefficient;
+    private Button backButton;
 
-    public Canvas hideCanvas;
     [SerializeField()] Vector3 PositionPoint;
     [SerializeField()] Vector3 RotatePoint;
     public float speed;
-    public GameObject targetObject;
 
     void Start()
     {
         cam = Camera.main;
         target = GameObject.FindGameObjectWithTag("TargetCamera");
-        hideCanvas.enabled = false;
+        backButton = GameObject.FindGameObjectWithTag("BackButton").GetComponent<Button>();
+        backButton.gameObject.SetActive(false);
     }
 
     private void FixedUpdate()
@@ -44,7 +46,7 @@ public class ZoomObjects : MonoBehaviour
             DefaultPositionCamera = cam.transform.position;
             DefaultRotateCamera = cam.transform.eulerAngles;
             moveToPoint = true;
-            hideCanvas.enabled = true;
+            backButton.gameObject.SetActive(true);
             coefficient = 1.5f;
             target.transform.position = PositionPoint;
             target.transform.eulerAngles = RotatePoint;
@@ -55,7 +57,8 @@ public class ZoomObjects : MonoBehaviour
     public void TapOnButton()
     {
         moveToDefault = true;
-        hideCanvas.enabled = false;
+        backButton.gameObject.SetActive(false);
+        this.gameObject.SetActive(true);
         target.transform.position = DefaultPositionCamera;
         target.transform.eulerAngles = DefaultRotateCamera;
         coefficient = 2.5f;
@@ -70,6 +73,8 @@ public class ZoomObjects : MonoBehaviour
             SuccessRotate = true;
         if (cam.transform.position == target.transform.position && SuccessRotate)
         {
+            if (moveToPoint == move)
+                this.gameObject.SetActive(false);
             move = false;
             SuccessRotate = false;
         }
