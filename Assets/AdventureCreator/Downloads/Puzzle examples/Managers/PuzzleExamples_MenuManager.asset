@@ -24,7 +24,7 @@ MonoBehaviour:
   title: Inventory
   manualSize: {x: 100, y: 12.60303}
   positionType: 1
-  manualPosition: {x: 529, y: 37.494015}
+  manualPosition: {x: 247, y: 18.7155}
   positionSmoothing: 0
   alignment: 0
   toggleKey: 
@@ -98,8 +98,8 @@ MonoBehaviour:
     serializedVersion: 2
     x: 0
     y: 0
-    width: 1058
-    height: 74.98803
+    width: 494
+    height: 37.431
   showInFilter: 1
 --- !u!114 &-7783978687866853971
 MonoBehaviour:
@@ -210,10 +210,10 @@ MonoBehaviour:
   maxAutoWidthFactor: 0.5
   relativeRect:
     serializedVersion: 2
-    x: 5.29
-    y: 5.29
-    width: 962.77997
-    height: 65.45
+    x: 2.47
+    y: 2.47
+    width: 449.54
+    height: 32.670002
   relativePosition: {x: 0, y: 0}
   numSlots: 13
   uiSlots:

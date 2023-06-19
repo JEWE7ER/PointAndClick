@@ -234,8 +234,9 @@ namespace AC
 				while (allAxes.Next (false))
 				{
 					SerializedProperty axis = allAxes.Copy ();
-					if (axis.Next(true) && axis.stringValue == axisName)
-                    {
+					axis.Next (true);
+					if (axis.stringValue == axisName)
+					{
 						return true;
 					}
 				}
