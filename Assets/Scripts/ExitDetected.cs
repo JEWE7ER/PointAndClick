@@ -1,10 +1,12 @@
 using UnityEngine;
 using static TempValueCamera;
 
-public class ExitLastDetected : MonoBehaviour
+public class ExitDetected : MonoBehaviour
 {
     private Camera cam;
     private bool onSpriteDown = false;
+
+    public string Name;
 
     private void OnMouseDown()
     {
@@ -12,7 +14,7 @@ public class ExitLastDetected : MonoBehaviour
         if (!cam.GetComponent<RotateRoom>().cameraMove)
         {
             SetValue();
-            //GameObject.Find("RoomChanger").GetComponent<Scenes>().PrevRoom();
+            GameObject.Find("RoomChanger").GetComponent<Scenes>().LoadRoom(Name);
             EngineSwipe.SwipeEvent -= cam.GetComponent<RotateRoom>().OnSwipe;
         }
     }

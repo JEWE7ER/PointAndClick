@@ -1,6 +1,7 @@
 using UnityEngine;
 using System;
 using static TempValueCamera;
+using UnityEngine.SceneManagement;
 
 public class RotateRoom : MonoBehaviour
 {
@@ -11,41 +12,98 @@ public class RotateRoom : MonoBehaviour
     private bool stop = false;
     private bool startMove = false;
     private Vector3 targetPosition;
+    private readonly string SceneWithBorders = "EntranceRoom";
+    private bool BorderedScene;
+    private bool fakeMove = false;
+    private bool fakeMoveFwd = false;
+    private bool fakeMoveBck = false;
+    private Vector3 tempPosition;
+
     [SerializeField()] Vector3 rotation;
-    
     public float speed = 2.0f;
 
     void Start()
     {
+        BorderedScene = SceneManager.GetActiveScene().name.Equals(SceneWithBorders);
+        targetPosition = transform.position;
         if (TempValueCamera.CurrentAngle != 0)
         {
             currentAngle = TempValueCamera.CurrentAngle;
-            transform.eulerAngles = TempValueCamera.CameraRotate;
+            if (!BorderedScene || (BorderedScene && currentAngle==4))
+            {
+                transform.eulerAngles = TempValueCamera.CameraRotate;
+                SetTargetPosition();//targetPosition = TempValueCamera.CameraPosition;
+            }
+            else
+            {
+                if (currentAngle == 3) {
+                    transform.eulerAngles = new Vector3(25, 45, 0);
+                    targetPosition.x *= -1;
+                    transform.position = targetPosition;
+                    currentAngle = 4;
+                }
+                else
+                    currentAngle = 1;
+            }
             MoveToStart();
             startMove = true;
             SetValue();
         }
-        else
-            targetPosition = transform.position;
-
         EngineSwipe.SwipeEvent += OnSwipe;
     }
+
     void FixedUpdate()
     {
-        if (cameraMove || startMove)
+        if (cameraMove || startMove || fakeMove)
         {
-            if (cameraMove)
+            if (cameraMove || fakeMove)
             {
                 transform.SetPositionAndRotation(Quaternion.Euler(speed * Time.deltaTime * rotation) * transform.position,
                                                  Quaternion.Euler(speed * Time.deltaTime * rotation) * transform.rotation);
-                if (Mathf.Abs(transform.position.x) > Mathf.Abs(targetPosition.x) || 
-                    Mathf.Abs(transform.position.z) > Mathf.Abs(targetPosition.z))
-                    stop = true;
 
-                if (Math.Round(MathF.Abs(transform.position.x)) == Math.Round(MathF.Abs(transform.position.z)) && stop)
+                if (cameraMove)
                 {
-                    transform.position = targetPosition;
-                    cameraMove = false;
+                    if (Mathf.Abs(transform.position.x) > Mathf.Abs(targetPosition.x) ||
+                        Mathf.Abs(transform.position.z) > Mathf.Abs(targetPosition.z))
+                        stop = true;
+
+                    if (Math.Round(MathF.Abs(transform.position.x)) == Math.Round(MathF.Abs(transform.position.z)) && stop)
+                    {
+                        transform.position = targetPosition;
+                        cameraMove = false;
+                        stop = false;
+                    }
+                }
+                else
+                {
+                    if (fakeMoveFwd)
+                    {
+                        if (transform.position.z >= targetPosition.z)
+                            stop = true;
+
+                        if (stop)
+                        {
+                            fakeMoveFwd = false;
+                            FakeMoveBck();
+                            stop = false;
+                        }
+                    }
+                    else if (fakeMoveBck)
+                    {
+                        if (transform.position.z <= targetPosition.z)
+                            stop = true;
+
+                        if (stop)
+                        {
+                            transform.position = targetPosition;
+                            fakeMoveBck = false;
+                            fakeMove = false;
+                            stop = false;
+                            //rotation.y *= -1;
+                            speed *= 2;
+                        }
+                            
+                    }
                 }
             }
             else
@@ -59,18 +117,29 @@ public class RotateRoom : MonoBehaviour
 
     void Update()
     {
-        if (!cameraMove && !startMove && !zoom)
+        if (!cameraMove && !startMove && !zoom && !fakeMove)
         {
+            bool leftBorder = BorderedScene && currentAngle == 4;
+            bool rightBorder = BorderedScene && currentAngle == 1;
             if (Input.GetKeyDown(KeyCode.LeftArrow))
-                MoveLeft();
+            {
+                if (!leftBorder)
+                    MoveLeft();
+                else
+                    FakeMoveLeftFwd();
+            }
             else if (Input.GetKeyDown(KeyCode.RightArrow))
-                MoveRight();
+            {
+                if (!rightBorder)
+                    MoveRight();
+                else
+                    FakeMoveRightFwd();
+            }
         }
     }
 
     private void MoveToStart()
     {
-        targetPosition = TempValueCamera.CameraPosition;
         Vector3 startPosition;
         float distanceForMove = 4;
         if ((currentAngle == 1 || currentAngle == 4 || TempValueCamera.OnSpriteDown) &&
@@ -119,14 +188,58 @@ public class RotateRoom : MonoBehaviour
         cameraMove = true;
     }
 
+    private void FakeMoveLeftFwd()
+    {
+        if (rotation.y < 0)
+            rotation.y *= -1;
+
+        FakeMove();
+    }
+   
+    private void FakeMoveRightFwd()
+    {
+        if (rotation.y > 0)
+            rotation.y *= -1;
+
+        FakeMove();
+    }
+
+    private void FakeMove()
+    {
+        fakeMove = true;
+        fakeMoveFwd = true;
+        tempPosition = targetPosition;
+        targetPosition.z /= 8.0f;
+        speed /= 2;
+    }
+
+    private void FakeMoveBck()
+    {
+        targetPosition.z = tempPosition.z;
+        fakeMoveBck = true;
+        rotation.y *= -1;
+    }
+
     internal void OnSwipe(Vector2 direction)
     {
-        if (!cameraMove && !startMove && !zoom)
+        if (!cameraMove && !startMove && !zoom && !fakeMove)
         {
+            bool leftBorder = BorderedScene && currentAngle == 4;
+            bool rightBorder = BorderedScene && currentAngle == 1;
             if (direction.x > 0)
-                MoveLeft();
+            {
+                if (!leftBorder)
+                    MoveLeft();
+                else
+                    FakeMoveLeftFwd();
+            }
             else if (direction.x < 0)
-                MoveRight();
+            {
+                if (!rightBorder)
+                    MoveRight(); 
+                else
+                    FakeMoveRightFwd();
+            }
         }
     }
 
@@ -137,5 +250,16 @@ public class RotateRoom : MonoBehaviour
         TempValueCamera.CurrentAngle = 0;
         TempValueCamera.OnSpriteDown = false;
         TempValueCamera.NumWall = 0;
+    }
+
+    private void SetTargetPosition()
+    {
+        Vector3 tempPosition = TempValueCamera.CameraPosition;
+        if ((transform.position.x < 0 && tempPosition.x > 0) || 
+            (transform.position.x > 0 && tempPosition.x < 0))
+            targetPosition.x *= -1;
+        if ((transform.position.z < 0 && tempPosition.z > 0) ||
+            (transform.position.z > 0 && tempPosition.z < 0))
+            targetPosition.z *= -1;
     }
 }

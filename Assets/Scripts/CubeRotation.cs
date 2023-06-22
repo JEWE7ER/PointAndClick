@@ -7,6 +7,7 @@ public class CubeRotation : MonoBehaviour
     public Manager1 manager;
     private Vector3 rotate = new Vector3(0, 0, -90);
     private bool a = false;
+
     private int i;
    
     void Start()

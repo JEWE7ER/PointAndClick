@@ -12,7 +12,7 @@ public class ExitNextDetected : MonoBehaviour
         if (!cam.GetComponent<RotateRoom>().cameraMove)
         {
             SetValue();
-            GameObject.Find("RoomChanger").GetComponent<Scenes>().NextRoom();
+            //GameObject.Find("RoomChanger").GetComponent<Scenes>().NextRoom();
             EngineSwipe.SwipeEvent -= cam.GetComponent<RotateRoom>().OnSwipe;
         }
     }
