@@ -23,19 +23,19 @@ public class Cube : MonoBehaviour
 
             if (!Physics.Linecast(transform.position, transform.position + transform.right, out hit))
             {
-                transform.position = new Vector3(transform.position.x + 0.3f, transform.position.y, transform.position.z);
+                transform.position = new Vector3(transform.position.x + 0.25f, transform.position.y, transform.position.z);
             }
             else if (!Physics.Linecast(transform.position, transform.position + -transform.right, out hit))
             {
-                transform.position = new Vector3(transform.position.x - 0.3f, transform.position.y, transform.position.z);
+                transform.position = new Vector3(transform.position.x - 0.25f, transform.position.y, transform.position.z);
             }
             else if (!Physics.Linecast(transform.position, transform.position + transform.up, out hit))
             {
-                transform.position = new Vector3(transform.position.x, transform.position.y + 0.3f, transform.position.z);
+                transform.position = new Vector3(transform.position.x, transform.position.y + 0.25f, transform.position.z);
             }
             else if (!Physics.Linecast(transform.position, transform.position + -transform.up, out hit))
             {
-                transform.position = new Vector3(transform.position.x, transform.position.y - 0.3f, transform.position.z);
+                transform.position = new Vector3(transform.position.x, transform.position.y - 0.25f, transform.position.z);
             }
             col.enabled = true;
 
