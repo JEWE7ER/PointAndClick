@@ -7,6 +7,7 @@ TagManager:
   - TargetCamera
   - trigger
   - BackButton
+  - TagTrigger
   layers:
   - Default
   - TransparentFX
