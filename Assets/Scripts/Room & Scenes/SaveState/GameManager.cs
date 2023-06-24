@@ -5,26 +5,28 @@ using static SaveState;
 public class GameManager : MonoBehaviour
 {
     internal bool destroy = false;
-    private GameObject enableObject;
+
+    //private GameObject enableObject;
+
+    public GameObject targetObject;
 
     void Start()
     {
-        int index = SceneManager.GetActiveScene().buildIndex;
-        //if (SaveState.scenesState.ContainsKey(index))
+        //int index = SceneManager.GetActiveScene().buildIndex;
+        //string nameTag;
+        ////if (SaveState.scenesState.ContainsKey(index))
+        ////{
+        ////    destroy = true;
+        ////    Destroy(destroyObject);
+        ////    //SceneManager.SetActiveScene(SaveState.GetScene(index));
+        ////}
+        //for (int i = 0; i < SaveState.scenesState.Count; i++)
         //{
-        //    destroy = true;
-        //    Destroy(destroyObject);
-        //    //SceneManager.SetActiveScene(SaveState.GetScene(index));
+        //    if (index != i)
+        //        enableObject.SetActive(false);
+        //    else
+        //        targetObject.SetActive(true);
         //}
-        for (int i = 0; i < SaveState.scenesState.Count; i++)
-        {
-            string nameTag = SaveState.GetScene(i);
-            enableObject = GameObject.FindGameObjectWithTag(nameTag);
-            if (i != index)
-                enableObject.SetActive(false);
-            else
-                enableObject.SetActive(true);
-        }
     }
 
 }

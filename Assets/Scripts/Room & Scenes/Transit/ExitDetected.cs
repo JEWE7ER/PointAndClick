@@ -9,13 +9,15 @@ public class ExitDetected : MonoBehaviour
     private bool onSpriteDown = false;
 
     public string Name;
+    public GameObject saveObject;
 
     private void OnMouseDown()
     {
         cam = Camera.main;
         if (!cam.GetComponent<RotateRoom>().cameraMove)
         {
-            SaveState.Save();
+            //saveObject = GameObject.FindGameObjectWithTag("EntranceRoom");
+            SaveState.Save(saveObject);
             SetValue();
             GameObject.Find("RoomChanger").GetComponent<Scenes>().LoadRoom(Name);
             EngineSwipe.SwipeEvent -= cam.GetComponent<RotateRoom>().OnSwipe;

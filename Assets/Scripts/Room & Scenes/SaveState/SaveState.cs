@@ -6,19 +6,18 @@ using UnityEngine.SceneManagement;
 public static class SaveState
 {
     //internal static Dictionary<int, Scene> scenesState = new Dictionary<int, Scene>();
-    internal static Dictionary<int, string> scenesState = new Dictionary<int, string>();
+    internal static Dictionary<int, GameObject> scenesState = new Dictionary<int, GameObject>();
     
-    internal static void Save()
+    internal static void Save(GameObject saveObject)
     {
         int index = SceneManager.GetActiveScene().buildIndex;
-        string sceneValue = SceneManager.GetActiveScene().name;
         if (!scenesState.ContainsKey(index))
-            scenesState.Add(index, sceneValue);
+            scenesState.Add(index, saveObject);
 
         else
-            scenesState[index] = sceneValue;
+            scenesState[index] = saveObject;
     }
-    internal static string GetScene(int index)
+    internal static GameObject GetScene(int index)
     {
         return scenesState[index];
     }
