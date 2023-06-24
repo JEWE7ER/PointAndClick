@@ -26,13 +26,18 @@ public class OpenDoor : MonoBehaviour
     {
         if (tagManager.isWin)
         {
-            tagManager.isWin = false;
-            transform.Rotate(rotating);
-            exit.SetActive(true);
-            if (spriteClose.activeSelf)
+            if (transform.localEulerAngles == rotating)
+                tagManager.isWin = false;
+            else
             {
-                spriteClose.SetActive(false);
-                spriteOpen.SetActive(true);
+                transform.localEulerAngles = rotating;
+                if (!exit.activeSelf)
+                    exit.SetActive(true);
+                if (spriteClose.activeSelf)
+                {
+                    spriteClose.SetActive(false);
+                    spriteOpen.SetActive(true);
+                }
             }
         }
         

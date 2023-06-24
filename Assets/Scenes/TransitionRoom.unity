@@ -717,12 +717,12 @@ GameObject:
   - component: {fileID: 235411748}
   - component: {fileID: 235411753}
   - component: {fileID: 235411752}
-  - component: {fileID: 235411751}
   - component: {fileID: 235411750}
   - component: {fileID: 235411749}
+  - component: {fileID: 235411754}
   m_Layer: 0
   m_Name: Exit
-  m_TagString: Untagged
+  m_TagString: Exit
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -771,18 +771,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 8, y: 1, z: 8}
   m_Center: {x: -1.075786, y: 0.290043, z: 0.000000046173948}
---- !u!114 &235411751
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 235411747}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7d3ea682ff9bd8c4d8b13e9efe932cca, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!23 &235411752
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -833,6 +821,19 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 235411747}
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &235411754
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 235411747}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 33a651cce8d63c44097263dccce87cc7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: ChestRoom
 --- !u!1 &243483763
 GameObject:
   m_ObjectHideFlags: 0
@@ -940,6 +941,10 @@ PrefabInstance:
     - target: {fileID: 100000, guid: b3d24b3ed9916449eafdcc9879869199, type: 3}
       propertyPath: m_Name
       value: wall_1
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: b3d24b3ed9916449eafdcc9879869199, type: 3}
+      propertyPath: m_TagString
+      value: WallWithExit
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: b3d24b3ed9916449eafdcc9879869199, type: 3}
       propertyPath: m_RootOrder
@@ -6262,7 +6267,7 @@ GameObject:
   - component: {fileID: 1281688600}
   m_Layer: 0
   m_Name: wall_4
-  m_TagString: Untagged
+  m_TagString: WallWithExit
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -12056,6 +12061,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8075339611300031408, guid: c205af5a2f59f3b4d981087af043eb9a, type: 3}
       propertyPath: m_Name
+      value: Exit
+      objectReference: {fileID: 0}
+    - target: {fileID: 8075339611300031408, guid: c205af5a2f59f3b4d981087af043eb9a, type: 3}
+      propertyPath: m_TagString
       value: Exit
       objectReference: {fileID: 0}
     m_RemovedComponents: []

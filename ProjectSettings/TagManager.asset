@@ -16,6 +16,9 @@ TagManager:
   - SpriteOpen
   - WallWithExit
   - Collider
+  - EntranceRoom
+  - TransitionRoom
+  - ChestRoom
   layers:
   - Default
   - TransparentFX

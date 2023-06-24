@@ -1,13 +1,12 @@
 using System.Diagnostics.Tracing;
 using UnityEngine;
 using static TempValueCamera;
+using static SaveState;
 
 public class ExitDetected : MonoBehaviour
 {
     private Camera cam;
     private bool onSpriteDown = false;
-    private ExitDetected tempValue;
-    private int numWall;
 
     public string Name;
 
@@ -16,6 +15,7 @@ public class ExitDetected : MonoBehaviour
         cam = Camera.main;
         if (!cam.GetComponent<RotateRoom>().cameraMove)
         {
+            SaveState.Save();
             SetValue();
             GameObject.Find("RoomChanger").GetComponent<Scenes>().LoadRoom(Name);
             EngineSwipe.SwipeEvent -= cam.GetComponent<RotateRoom>().OnSwipe;
