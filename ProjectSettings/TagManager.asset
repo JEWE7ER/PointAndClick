@@ -11,6 +11,11 @@ TagManager:
   - TagCube
   - TagManager
   - TagTriggerZones
+  - Exit
+  - SpriteClose
+  - SpriteOpen
+  - WallWithExit
+  - Collider
   layers:
   - Default
   - TransparentFX

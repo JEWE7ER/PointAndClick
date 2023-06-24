@@ -1,3 +1,4 @@
+using System.Diagnostics.Tracing;
 using UnityEngine;
 using static TempValueCamera;
 
@@ -5,6 +6,8 @@ public class ExitDetected : MonoBehaviour
 {
     private Camera cam;
     private bool onSpriteDown = false;
+    private ExitDetected tempValue;
+    private int numWall;
 
     public string Name;
 
@@ -25,7 +28,7 @@ public class ExitDetected : MonoBehaviour
         TempValueCamera.CameraRotate = cam.transform.eulerAngles;
         TempValueCamera.CurrentAngle = cam.GetComponent<RotateRoom>().currentAngle;
         TempValueCamera.OnSpriteDown = onSpriteDown;
-        TempValueCamera.NumWall = GameObject.Find(transform.parent.parent.name).GetComponent<UpWall>().numWall;
+        TempValueCamera.NumWall = GameObject.FindGameObjectWithTag("WallWithExit").GetComponent<UpWall>().numWall;
     }
 
     public void OnSpriteDown()

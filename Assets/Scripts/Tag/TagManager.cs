@@ -6,16 +6,25 @@ using UnityEngine.SceneManagement;
 public class TagManager : MonoBehaviour
 {
 
-    internal bool isWin;
+    internal bool isWin  = false;
+
+    private Camera cam;
+    private GameObject tagCollider;
 
     public Cube[] cubes;
     public int speed = 20;
 
+
+    void Start()
+    {
+        cam = Camera.main;
+        tagCollider = GameObject.FindGameObjectWithTag("Collider");
+    }
     void Update()
     {
-        if (isWin)
+        if (isWin && !cam.GetComponent<RotateRoom>().zoom)
         {
-            Debug.Log("Win");
+            tagCollider.SetActive(false);
         }
     }
 
