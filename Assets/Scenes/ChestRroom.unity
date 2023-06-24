@@ -4335,7 +4335,7 @@ Light:
   m_Type: 1
   m_Shape: 0
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 0
+  m_Intensity: 1
   m_Range: 12.247547
   m_SpotAngle: 104.45294
   m_InnerSpotAngle: 21.538902
@@ -7482,6 +7482,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 87441395}
     m_Modifications:
+    - target: {fileID: 101684, guid: c7ba8aacb1d261048bab2170e7576836, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 187966, guid: c7ba8aacb1d261048bab2170e7576836, type: 3}
       propertyPath: m_Name
       value: Old_chest
