@@ -629,7 +629,7 @@ GameObject:
   - component: {fileID: 138204108}
   m_Layer: 0
   m_Name: 5
-  m_TagString: Untagged
+  m_TagString: TagCube
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -642,7 +642,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 138204101}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.25, y: 0.24999964, z: 0}
+  m_LocalPosition: {x: -0.25, y: 0.25, z: 0}
   m_LocalScale: {x: 0.25, y: 0.25, z: 0.01}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -741,6 +741,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   number: 5
+  speed: 0
+  tagManager: {fileID: 495068751}
+  triggerZone: {fileID: 1697057970}
 --- !u!1 &145538227
 GameObject:
   m_ObjectHideFlags: 0
@@ -885,7 +888,7 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 166172758}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
@@ -1533,7 +1536,7 @@ GameObject:
   - component: {fileID: 208978494}
   m_Layer: 0
   m_Name: 2
-  m_TagString: Untagged
+  m_TagString: TagCube
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1645,6 +1648,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   number: 2
+  speed: 0
+  tagManager: {fileID: 495068751}
+  triggerZone: {fileID: 1697057970}
 --- !u!1 &252346658
 GameObject:
   m_ObjectHideFlags: 0
@@ -2069,7 +2075,7 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 425983486}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
@@ -2412,10 +2418,64 @@ Transform:
   - {fileID: 1323652457}
   - {fileID: 1697057971}
   - {fileID: 1741003657}
+  - {fileID: 495068750}
   - {fileID: 1012516459}
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &495068749
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 495068750}
+  - component: {fileID: 495068751}
+  m_Layer: 0
+  m_Name: TagManager
+  m_TagString: TagManager
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &495068750
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 495068749}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 2.248, y: -2.593, z: -4.660656}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 470135055}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &495068751
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 495068749}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3b01837714bbe9f41acb81a0ea01ba5e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cubes:
+  - {fileID: 2098770983}
+  - {fileID: 208978494}
+  - {fileID: 1656261262}
+  - {fileID: 1717236274}
+  - {fileID: 138204108}
+  - {fileID: 940897652}
+  - {fileID: 1723961542}
+  - {fileID: 1326587979}
 --- !u!1 &540454285
 GameObject:
   m_ObjectHideFlags: 0
@@ -3210,7 +3270,7 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 715410440}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
@@ -3517,7 +3577,7 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 773312612}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
@@ -3995,7 +4055,7 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 898341659}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
@@ -4037,7 +4097,7 @@ GameObject:
   - component: {fileID: 940897652}
   m_Layer: 0
   m_Name: 6
-  m_TagString: Untagged
+  m_TagString: TagCube
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4149,6 +4209,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   number: 6
+  speed: 0
+  tagManager: {fileID: 495068751}
+  triggerZone: {fileID: 1697057970}
 --- !u!1 &946258488
 GameObject:
   m_ObjectHideFlags: 0
@@ -4480,7 +4543,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2347436517628390384, guid: 4b1029c72142ced4e973f19ccdf088f2, type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 2347436517628390384, guid: 4b1029c72142ced4e973f19ccdf088f2, type: 3}
       propertyPath: m_LocalPosition.x
@@ -4594,7 +4657,7 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1028085166}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
@@ -5134,7 +5197,7 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1210935739}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
@@ -5685,7 +5748,7 @@ GameObject:
   - component: {fileID: 1326587979}
   m_Layer: 0
   m_Name: 8
-  m_TagString: Untagged
+  m_TagString: TagCube
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5797,6 +5860,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   number: 8
+  speed: 0
+  tagManager: {fileID: 495068751}
+  triggerZone: {fileID: 1697057970}
 --- !u!1 &1330193842
 GameObject:
   m_ObjectHideFlags: 0
@@ -6323,7 +6389,7 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1406132584}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
@@ -7351,7 +7417,7 @@ GameObject:
   - component: {fileID: 1656261262}
   m_Layer: 0
   m_Name: 3
-  m_TagString: Untagged
+  m_TagString: TagCube
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -7463,6 +7529,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   number: 3
+  speed: 0
+  tagManager: {fileID: 495068751}
+  triggerZone: {fileID: 1697057970}
 --- !u!1 &1660904539
 GameObject:
   m_ObjectHideFlags: 0
@@ -7685,7 +7754,7 @@ GameObject:
   - component: {fileID: 1697057971}
   m_Layer: 0
   m_Name: TriggerZones
-  m_TagString: Untagged
+  m_TagString: TagTriggerZones
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -7810,7 +7879,7 @@ GameObject:
   - component: {fileID: 1717236274}
   m_Layer: 0
   m_Name: 4
-  m_TagString: Untagged
+  m_TagString: TagCube
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -7922,6 +7991,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   number: 4
+  speed: 0
+  tagManager: {fileID: 495068751}
+  triggerZone: {fileID: 1697057970}
 --- !u!1 &1722666195
 GameObject:
   m_ObjectHideFlags: 0
@@ -8035,7 +8107,7 @@ GameObject:
   - component: {fileID: 1723961542}
   m_Layer: 0
   m_Name: 7
-  m_TagString: Untagged
+  m_TagString: TagCube
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -8147,6 +8219,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   number: 7
+  speed: 0
+  tagManager: {fileID: 495068751}
+  triggerZone: {fileID: 1697057970}
 --- !u!1 &1724697989
 GameObject:
   m_ObjectHideFlags: 0
@@ -8189,7 +8264,7 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1724697989}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
@@ -8871,7 +8946,7 @@ GameObject:
   - component: {fileID: 2098770983}
   m_Layer: 0
   m_Name: 1
-  m_TagString: Untagged
+  m_TagString: TagCube
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -8983,6 +9058,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   number: 1
+  speed: 0
+  tagManager: {fileID: 495068751}
+  triggerZone: {fileID: 1697057970}
 --- !u!1001 &2105697317
 PrefabInstance:
   m_ObjectHideFlags: 0

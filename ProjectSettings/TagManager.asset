@@ -8,6 +8,9 @@ TagManager:
   - trigger
   - BackButton
   - TagTrigger
+  - TagCube
+  - TagManager
+  - TagTriggerZones
   layers:
   - Default
   - TransparentFX

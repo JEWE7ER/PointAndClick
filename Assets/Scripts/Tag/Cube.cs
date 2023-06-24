@@ -3,51 +3,81 @@ using static TagManager;
 
 public class Cube : MonoBehaviour
 {
-    BoxCollider col;
-    public int number;
     internal int numberCell;
+    private BoxCollider col;
+    private float scaleX;
+    private float scaleY;
+    private Vector3 moveX;
+    private Vector3 moveY;
+    private Vector3 targetPosition;
+    private bool move = false;
+    private TagManager tagManager;
+    private GameObject triggerZones;
+    private int speed;
+
+    public int number;
 
     // Start is called before the first frame update
     void Start()
     {
+        tagManager = GameObject.FindGameObjectWithTag("TagManager").GetComponent<TagManager>();
+        triggerZones = GameObject.FindGameObjectWithTag("TagTriggerZones");
         col = GetComponent<BoxCollider>();
+        scaleX = transform.localScale.x;
+        scaleY = transform.localScale.y;
+        moveX = new Vector3(scaleX, 0, 0);
+        moveY = new Vector3(0, scaleY, 0);
+        speed = tagManager.speed;
     }
 
+    private void Update()
+    {
+        if (move)
+        {
+            transform.position = Vector3.MoveTowards(transform.position, targetPosition, speed * Time.deltaTime);
+            if (transform.position == targetPosition)
+                move = false;
+        }
+    }
 
     private void OnMouseDown()
     {
-        if (!TagManager.isWin)
+        if (!tagManager.isWin && !move)
         {
-            col.enabled = false;
+            triggerZones.SetActive(false);
             RaycastHit hit;
 
-            if (!Physics.Linecast(transform.position, transform.position + transform.right, out hit))
+            if (!Physics.Linecast(transform.position, transform.position + moveX, out hit))
             {
-                transform.position = new Vector3(transform.position.x + 0.25f, transform.position.y, transform.position.z);
+                targetPosition = new Vector3(transform.position.x + scaleX, transform.position.y, transform.position.z);
+                move = true;
             }
-            else if (!Physics.Linecast(transform.position, transform.position + -transform.right, out hit))
+            else if (!Physics.Linecast(transform.position, transform.position + -moveX, out hit))
             {
-                transform.position = new Vector3(transform.position.x - 0.25f, transform.position.y, transform.position.z);
+                targetPosition = new Vector3(transform.position.x - scaleX, transform.position.y, transform.position.z);
+                move = true;
             }
-            else if (!Physics.Linecast(transform.position, transform.position + transform.up, out hit))
+            else if (!Physics.Linecast(transform.position, transform.position + moveY, out hit))
             {
-                transform.position = new Vector3(transform.position.x, transform.position.y + 0.25f, transform.position.z);
+                targetPosition = new Vector3(transform.position.x, transform.position.y + scaleY, transform.position.z);
+                move = true;
             }
-            else if (!Physics.Linecast(transform.position, transform.position + -transform.up, out hit))
+            else if (!Physics.Linecast(transform.position, transform.position + -moveY, out hit))
             {
-                transform.position = new Vector3(transform.position.x, transform.position.y - 0.25f, transform.position.z);
+                targetPosition = new Vector3(transform.position.x, transform.position.y - scaleY, transform.position.z);
+                move = true;
             }
-            col.enabled = true;
+            triggerZones.SetActive(true);
 
         }
 
     }
     private void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "trigger")
+        if (other.tag == "TagTrigger")
         {
             numberCell = other.transform.GetComponent<NumberCell>().numberCell;
-            TagManager.Win();
+            tagManager.Win();
         }
     }
 

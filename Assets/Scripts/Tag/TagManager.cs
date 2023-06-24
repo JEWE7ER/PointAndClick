@@ -5,10 +5,21 @@ using UnityEngine.SceneManagement;
 
 public class TagManager : MonoBehaviour
 {
-    public static Cube[] cubes;
-    internal static bool isWin;
 
-    internal static void Win()
+    internal bool isWin;
+
+    public Cube[] cubes;
+    public int speed = 20;
+
+    void Update()
+    {
+        if (isWin)
+        {
+            Debug.Log("Win");
+        }
+    }
+
+    internal void Win()
     {
         foreach (var cube in cubes)
         {
@@ -16,13 +27,5 @@ public class TagManager : MonoBehaviour
                 return;
         }
         isWin = true;
-    }
-    // Update is called once per frame
-    void Update()
-    {
-        if (isWin)
-        {
-            Debug.Log("Win");
-        }
     }
 }
