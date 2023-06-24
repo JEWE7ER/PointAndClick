@@ -5,8 +5,7 @@ using static SaveState;
 public class GameManager : MonoBehaviour
 {
     internal bool destroy = false;
-    public GameObject destroyObject;
-    public GameObject enableObject;
+    private GameObject enableObject;
 
     void Start()
     {
