@@ -26,6 +26,7 @@ public class OpenDoor : MonoBehaviour
     {
         if (tagManager.isWin)
         {
+            tagManager.isWin = false;
             transform.Rotate(rotating);
             exit.SetActive(true);
             if (spriteClose.activeSelf)
@@ -33,7 +34,6 @@ public class OpenDoor : MonoBehaviour
                 spriteClose.SetActive(false);
                 spriteOpen.SetActive(true);
             }
-            tagManager.isWin = false;
         }
         
     }
