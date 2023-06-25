@@ -8,8 +8,10 @@ public class ExitDetected : MonoBehaviour
     private Camera cam;
     private bool onSpriteDown = false;
 
-    public string Name;
+    public string NameRoom;
+    public int numWall;
     public GameObject saveObject;
+    public GameObject gameManager;
 
     public void OnButtonDown()
     {
@@ -19,8 +21,8 @@ public class ExitDetected : MonoBehaviour
             //saveObject = GameObject.FindGameObjectWithTag("EntranceRoom");
             SaveState.Save(saveObject);
             SetValue();
-            GameObject.Find("RoomChanger").GetComponent<Scenes>().LoadRoom(Name);
-            EngineSwipe.SwipeEvent -= cam.GetComponent<RotateRoom>().OnSwipe;
+            gameManager.GetComponent<GameManager>().Transitions(NameRoom);
+            //EngineSwipe.SwipeEvent -= cam.GetComponent<RotateRoom>().OnSwipe;
         }
     }
 
@@ -30,7 +32,8 @@ public class ExitDetected : MonoBehaviour
         TempValueCamera.CameraRotate = cam.transform.eulerAngles;
         TempValueCamera.CurrentAngle = cam.GetComponent<RotateRoom>().currentAngle;
         TempValueCamera.OnSpriteDown = onSpriteDown;
-        TempValueCamera.NumWall = GameObject.FindGameObjectWithTag("WallWithExit").GetComponent<UpWall>().numWall;
+        TempValueCamera.NumWall = numWall;
+        TempValueCamera.NameRoom = NameRoom;
     }
 
     public void OnSpriteDown()

@@ -10,10 +10,6 @@ public class CubeRotation : MonoBehaviour
 
     private int i;
    
-    void Start()
-    {
-       
-    }
     void OnMouseDown()
     {
         a = true;

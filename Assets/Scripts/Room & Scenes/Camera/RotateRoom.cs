@@ -2,18 +2,19 @@ using UnityEngine;
 using System;
 using static TempValueCamera;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 public class RotateRoom : MonoBehaviour
 {
     internal int currentAngle = 1;
     internal bool cameraMove = false;
+    internal bool startMove = false;
     internal bool zoom = false;
 
     private bool stop = false;
-    private bool startMove = false;
     private Vector3 targetPosition;
-    private readonly string SceneWithBorders = "EntranceRoom";
-    private bool BorderedScene;
+    private readonly string RoomWithBorders = "EntranceRoom";
+    private bool BorderedRoom;
     private bool fakeMove = false;
     private bool fakeMoveFwd = false;
     private bool fakeMoveBck = false;
@@ -24,31 +25,7 @@ public class RotateRoom : MonoBehaviour
 
     void Start()
     {
-        BorderedScene = SceneManager.GetActiveScene().name.Equals(SceneWithBorders);
         targetPosition = transform.position;
-        if (TempValueCamera.CurrentAngle != 0)
-        {
-            currentAngle = TempValueCamera.CurrentAngle;
-            if (!BorderedScene || (BorderedScene && currentAngle==4))
-            {
-                transform.eulerAngles = TempValueCamera.CameraRotate;
-                SetTargetPosition();//targetPosition = TempValueCamera.CameraPosition;
-            }
-            else
-            {
-                if (currentAngle == 3) {
-                    transform.eulerAngles = new Vector3(25, 45, 0);
-                    targetPosition.x *= -1;
-                    transform.position = targetPosition;
-                    currentAngle = 4;
-                }
-                else
-                    currentAngle = 1;
-            }
-            MoveToStart();
-            startMove = true;
-            SetValue();
-        }
         EngineSwipe.SwipeEvent += OnSwipe;
     }
 
@@ -113,14 +90,16 @@ public class RotateRoom : MonoBehaviour
                     startMove = false;
             }
         }
+        if (TempValueCamera.CurrentAngle != 0)
+            ReloadPosition();
     }
 
     void Update()
     {
         if (!cameraMove && !startMove && !zoom && !fakeMove)
         {
-            bool leftBorder = BorderedScene && currentAngle == 4;
-            bool rightBorder = BorderedScene && currentAngle == 1;
+            bool leftBorder = BorderedRoom && currentAngle == 4;
+            bool rightBorder = BorderedRoom && currentAngle == 1;
             if (Input.GetKeyDown(KeyCode.LeftArrow))
             {
                 if (!leftBorder)
@@ -141,7 +120,7 @@ public class RotateRoom : MonoBehaviour
     private void MoveToStart()
     {
         Vector3 startPosition;
-        float distanceForMove = 4;
+        float distanceForMove = 6;
         if ((currentAngle == 1 || currentAngle == 4 || TempValueCamera.OnSpriteDown) &&
             !((currentAngle == 1 || currentAngle == 4) && TempValueCamera.OnSpriteDown))
             distanceForMove *= -1;
@@ -224,8 +203,8 @@ public class RotateRoom : MonoBehaviour
     {
         if (!cameraMove && !startMove && !zoom && !fakeMove)
         {
-            bool leftBorder = BorderedScene && currentAngle == 4;
-            bool rightBorder = BorderedScene && currentAngle == 1;
+            bool leftBorder = BorderedRoom && currentAngle == 4;
+            bool rightBorder = BorderedRoom && currentAngle == 1;
             if (direction.x > 0)
             {
                 if (!leftBorder)
@@ -241,6 +220,35 @@ public class RotateRoom : MonoBehaviour
                     FakeMoveRightFwd();
             }
         }
+    }
+
+    private void ReloadPosition()
+    {
+        BorderedRoom = TempValueCamera.NameRoom.Equals(RoomWithBorders);
+        currentAngle = TempValueCamera.CurrentAngle;
+        if (!BorderedRoom || (BorderedRoom && currentAngle == 4))
+        {
+            transform.eulerAngles = TempValueCamera.CameraRotate;
+            SetTargetPosition();//targetPosition = TempValueCamera.CameraPosition;
+        }
+        else if (currentAngle != 1)
+        {
+            if (currentAngle == 3)
+            {
+                transform.eulerAngles = new Vector3(25, 45, 0);
+                currentAngle = 4;
+            }
+            else if (currentAngle == 2)
+            {
+                transform.eulerAngles = new Vector3(25, -45, 0);
+                currentAngle = 1;
+            }
+            targetPosition.z *= -1;
+            transform.position = targetPosition;
+        }
+        MoveToStart();
+        startMove = true;
+        SetValue();
     }
 
     private void SetValue()

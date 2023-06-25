@@ -33,6 +33,10 @@ public class UpWall : MonoBehaviour
             if (transform.position == targetPosition)
                 moveWall = false;
         }
+        else if (cam.GetComponent<RotateRoom>().startMove)
+        {
+            Start();
+        }
     }
 
     void Transform()

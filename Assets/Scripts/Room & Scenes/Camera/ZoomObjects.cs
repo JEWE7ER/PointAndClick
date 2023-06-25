@@ -5,15 +5,15 @@ using UnityEngine.UI;
 public class ZoomObjects : MonoBehaviour
 {
     private Camera cam;
-    private GameObject target;
     private static Vector3 DefaultPositionCamera;
     private static Vector3 DefaultRotateCamera;
     private bool moveToPoint = false;
     private bool moveToDefault = false;
     private bool SuccessRotate = false;
     private float coefficient;
-    private Button backButton;
 
+    public Canvas backButton;
+    public GameObject target;
     [SerializeField()] Vector3 PositionPoint;
     [SerializeField()] Vector3 RotatePoint;
     public float speed;
@@ -21,8 +21,6 @@ public class ZoomObjects : MonoBehaviour
     void Start()
     {
         cam = Camera.main;
-        target = GameObject.FindGameObjectWithTag("TargetCamera");
-        backButton = GameObject.FindGameObjectWithTag("BackButton").GetComponent<Button>();
         backButton.gameObject.SetActive(false);
     }
 
@@ -37,6 +35,10 @@ public class ZoomObjects : MonoBehaviour
             if (!moveToDefault)
                 cam.GetComponent<RotateRoom>().zoom = false;
 
+        }
+        else if (cam.GetComponent<RotateRoom>().startMove)
+        {
+            Start();
         }
     }
     private void OnMouseDown()

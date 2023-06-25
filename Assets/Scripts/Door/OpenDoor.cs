@@ -18,11 +18,8 @@ public class OpenDoor : MonoBehaviour
     {
         gameManager = GameObject.FindWithTag("GameManager").GetComponent<GameManager>();
         tagManager = GameObject.FindGameObjectWithTag("TagManager").GetComponent<TagManager>();
-        if (gameManager.isDefault)
-        {
-            if (exit.activeSelf)
-                exit.SetActive(false);
-        }
+        if (exit.activeSelf)
+            exit.SetActive(false);
     }
 
     // Update is called once per frame

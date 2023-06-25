@@ -1,26 +1,38 @@
 using UnityEngine.SceneManagement;
 using UnityEngine;
 using static SaveState;
+using System;
 
 public class GameManager : MonoBehaviour
 {
-    internal bool isDefault = true;
-
-    private GameObject prefab;
+    private GameObject loadState;
 
     public GameObject targetObject;
+    public GameObject[] Rooms;
 
-    void Start()
+    private void Awake()
     {
-        int index = SceneManager.GetActiveScene().buildIndex;
-        if (SaveState.scenesState.ContainsKey(index))
+        if (SaveState.CheckSave(targetObject))
         {
             Destroy(targetObject);
-            prefab = Instantiate(Resources.Load<GameObject>(scenesState[index]), transform, false);
-            prefab.name = targetObject.name;
-            prefab.transform.SetParent(targetObject.transform.parent);
-            prefab.transform.SetSiblingIndex(targetObject.transform.GetSiblingIndex());
-            isDefault = false;
+            loadState = Instantiate(Resources.Load<GameObject>(SaveState.fileName), transform, false);
+            loadState.name = targetObject.name;
+            loadState.transform.SetParent(targetObject.transform.parent);
+            loadState.transform.SetSiblingIndex(targetObject.transform.GetSiblingIndex());
         }
+    }
+
+    internal void Transitions(string name)
+    {
+        GameObject SelectRoom = null;
+        foreach (var room in Rooms) 
+        {
+            if (room.name.Equals(name))
+            {
+                SelectRoom = room;
+            }
+            room.SetActive(false);
+        }
+        SelectRoom.SetActive(true);
     }
 }

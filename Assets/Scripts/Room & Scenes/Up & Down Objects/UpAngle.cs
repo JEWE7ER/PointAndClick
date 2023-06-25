@@ -32,6 +32,10 @@ public class UpAngle : MonoBehaviour
             if (transform.position == targetPosition)
                 moveAngle = false;
         }
+        else if (cam.GetComponent<RotateRoom>().startMove)
+        {
+            Start();
+        }
     }
 
     void Transform()
