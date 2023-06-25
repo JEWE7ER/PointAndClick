@@ -4,29 +4,22 @@ using static SaveState;
 
 public class GameManager : MonoBehaviour
 {
-    internal bool destroy = false;
+    internal bool isDefault = true;
 
-    //private GameObject enableObject;
+    private GameObject prefab;
 
     public GameObject targetObject;
 
-    void Start()
+    void Awake()
     {
-        //int index = SceneManager.GetActiveScene().buildIndex;
-        //string nameTag;
-        ////if (SaveState.scenesState.ContainsKey(index))
-        ////{
-        ////    destroy = true;
-        ////    Destroy(destroyObject);
-        ////    //SceneManager.SetActiveScene(SaveState.GetScene(index));
-        ////}
-        //for (int i = 0; i < SaveState.scenesState.Count; i++)
-        //{
-        //    if (index != i)
-        //        enableObject.SetActive(false);
-        //    else
-        //        targetObject.SetActive(true);
-        //}
+        int index = SceneManager.GetActiveScene().buildIndex;
+        if (SaveState.scenesState.ContainsKey(index))
+        {
+            string Name = targetObject.name;
+            Destroy(targetObject);
+            prefab = Instantiate(Resources.Load<GameObject>(scenesState[index]), transform, false);
+            prefab.name = Name;
+            isDefault = false;
+        }
     }
-
 }

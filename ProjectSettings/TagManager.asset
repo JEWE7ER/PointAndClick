@@ -19,6 +19,7 @@ TagManager:
   - EntranceRoom
   - TransitionRoom
   - ChestRoom
+  - GameManager
   layers:
   - Default
   - TransparentFX
