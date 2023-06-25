@@ -35,9 +35,13 @@ public static class SaveState
             else
                 Debug.Log("Prefab failed to save" + prefabSuccess);
         }
-
-        //else
-            //scenesState[index] = saveObject;
+        else
+        {
+            string localPath = "Assets/Resources/Saves/" + saveObject.name + "Prefab.prefab";
+            File.Delete(localPath);
+            localPath = AssetDatabase.GenerateUniqueAssetPath(localPath);
+            PrefabUtility.SaveAsPrefabAsset(saveObject, localPath);
+        }            
     }
     //internal static GameObject GetScene(int index)
     //{

@@ -11,7 +11,7 @@ public class ExitDetected : MonoBehaviour
     public string Name;
     public GameObject saveObject;
 
-    private void OnMouseDown()
+    public void OnButtonDown()
     {
         cam = Camera.main;
         if (!cam.GetComponent<RotateRoom>().cameraMove)
@@ -36,6 +36,6 @@ public class ExitDetected : MonoBehaviour
     public void OnSpriteDown()
     {
         onSpriteDown = true;
-        OnMouseDown();
+        OnButtonDown();
     }
 }

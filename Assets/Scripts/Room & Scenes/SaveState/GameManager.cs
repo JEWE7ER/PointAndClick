@@ -10,15 +10,16 @@ public class GameManager : MonoBehaviour
 
     public GameObject targetObject;
 
-    void Awake()
+    void Start()
     {
         int index = SceneManager.GetActiveScene().buildIndex;
         if (SaveState.scenesState.ContainsKey(index))
         {
-            string Name = targetObject.name;
             Destroy(targetObject);
             prefab = Instantiate(Resources.Load<GameObject>(scenesState[index]), transform, false);
-            prefab.name = Name;
+            prefab.name = targetObject.name;
+            prefab.transform.SetParent(targetObject.transform.parent);
+            prefab.transform.SetSiblingIndex(targetObject.transform.GetSiblingIndex());
             isDefault = false;
         }
     }

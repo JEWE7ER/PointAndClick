@@ -17,10 +17,10 @@ public class OpenDoor : MonoBehaviour
     void Start()
     {
         gameManager = GameObject.FindWithTag("GameManager").GetComponent<GameManager>();
+        tagManager = GameObject.FindGameObjectWithTag("TagManager").GetComponent<TagManager>();
         if (gameManager.isDefault)
         {
-            tagManager = GameObject.FindGameObjectWithTag("TagManager").GetComponent<TagManager>();
-            if (exit != null)
+            if (exit.activeSelf)
                 exit.SetActive(false);
         }
     }
@@ -35,9 +35,9 @@ public class OpenDoor : MonoBehaviour
             else
             {
                 transform.localEulerAngles = rotating;
-                if (exit != null)
+                if (!exit.activeSelf)
                     exit.SetActive(true);
-                if (spriteClose != null)
+                if (spriteClose.activeSelf)
                 {
                     spriteClose.SetActive(false);
                     spriteOpen.SetActive(true);
