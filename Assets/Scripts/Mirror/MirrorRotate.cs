@@ -19,7 +19,7 @@ public class MirrorRotate : MonoBehaviour
     void OnMouseDown()
     {
         a = true;
-        if (i > 9)
+        if (i > 8)
         {
             i = 0;
 
@@ -28,7 +28,9 @@ public class MirrorRotate : MonoBehaviour
     void FixedUpdate()
     {
         
-        if (transform.localEulerAngles.x >= 50 && transform.localEulerAngles.x < 100) 
+
+
+        if (transform.localEulerAngles.x >= 20 && transform.localEulerAngles.x < 100) 
         {
             rotate = new Vector3(0, 10, 0);
         }

@@ -34,9 +34,9 @@ public class Manager1 : MonoBehaviour
     {
         
         if (isWin)
-        { 
-                //cube[2].transform.position = new Vector3((float)-0.824000001, (float)2.93899989, (float)4.40838623) * Time.deltaTime;
-                cube[2].transform.position = Vector3.Lerp(cube[2].transform.position, new Vector3((float)-0.824000001, (float)2.938999, (float)4.40838623), Time.deltaTime * 0.9f);
+        {
+
+            cube[2].transform.position = Vector3.Lerp(cube[2].transform.position, new Vector3((float)-0.803000008, (float)4.19700003, (float)4.40838623), Time.deltaTime * 0.3f);
          
             
         }

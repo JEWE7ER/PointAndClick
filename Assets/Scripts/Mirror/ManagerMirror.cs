@@ -7,9 +7,6 @@ public class ManagerMirror : MonoBehaviour
 {
     public MirrorRotate[] mirror;
     public bool isWin = false;
-    //Vector3(330,0,90) Vector3(330,0,90)
-    //Vector3(340.000031,180,270) Vector3(330.000031,180,270)
-    //Vector3(330,0,90) Vector3(330,0,90)
     public void win()
     {
         //&& Math.Round(mirror[1].transform.localEulerAngles.x) == 330 
@@ -18,7 +15,7 @@ public class ManagerMirror : MonoBehaviour
         for (int i = 0; i < mirror.Length-1; i++)
         {
 
-            if (Math.Round(mirror[i].transform.localEulerAngles.x) == 350 || i == 1  && Math.Round(mirror[i].transform.localEulerAngles.x) == 10)
+            if (Math.Round(mirror[i].transform.localEulerAngles.x / 10) * 10 == 350 || i == 1  && Math.Round(mirror[i].transform.localEulerAngles.x / 10) * 10 == 10)
             {
 
             }
