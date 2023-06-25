@@ -12,10 +12,7 @@ public class MirrorRotate : MonoBehaviour
     //Vector3(330,0,90) Vector3(330,0,90)
     //Vector3(340.000031,180,270) Vector3(330.000031,180,270)
     //Vector3(330,0,90) Vector3(330,0,90)
-    void Start()
-    {
-
-    }
+    
     void OnMouseDown()
     {
         a = true;
@@ -27,9 +24,6 @@ public class MirrorRotate : MonoBehaviour
     }
     void FixedUpdate()
     {
-        
-
-
         if (transform.localEulerAngles.x >= 20 && transform.localEulerAngles.x < 100) 
         {
             rotate = new Vector3(0, 10, 0);
