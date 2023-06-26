@@ -121,9 +121,18 @@ public class RotateRoom : MonoBehaviour
     {
         Vector3 startPosition;
         float distanceForMove = 6;
-        if ((currentAngle == 1 || currentAngle == 4 || TempValueCamera.OnSpriteDown) &&
-            !((currentAngle == 1 || currentAngle == 4) && TempValueCamera.OnSpriteDown) && (TempValueCamera.NumWall % 2 == 0))
+        if (((currentAngle == 1 || currentAngle == 4 || TempValueCamera.OnSpriteDown) &&
+            !((currentAngle == 1 || currentAngle == 4) && TempValueCamera.OnSpriteDown) && (TempValueCamera.NumWall == 3)) ||
+            //(currentAngle == 1 || currentAngle == 2 || TempValueCamera.OnSpriteDown) &&
+            //!((currentAngle == 1 || currentAngle == 2) && TempValueCamera.OnSpriteDown) && (TempValueCamera.NumWall == 4) ||
+            ((currentAngle == 3 || currentAngle == 4 || TempValueCamera.OnSpriteDown) &&
+            !((currentAngle == 3 || currentAngle == 4) && TempValueCamera.OnSpriteDown) && (TempValueCamera.NumWall == 2)))
+            //(currentAngle == 2 || currentAngle == 3 || TempValueCamera.OnSpriteDown) &&
+            //!((currentAngle == 2 || currentAngle == 3) && TempValueCamera.OnSpriteDown) && (TempValueCamera.NumWall == 1))
             distanceForMove *= -1;
+        //if ((TempValueCamera.NumWall - currentAngle < 2 || TempValueCamera.OnSpriteDown) &&
+        //    !(TempValueCamera.NumWall - currentAngle < 2 && TempValueCamera.OnSpriteDown))
+        //    distanceForMove *= -1;
 
         if (TempValueCamera.NumWall % 2 == 0)//if (currentAngle % 2 == 0 && TempValueCamera.NumWall % 2 == 0)
             startPosition = new Vector3(targetPosition.x + distanceForMove, targetPosition.y, targetPosition.z);

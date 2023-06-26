@@ -40,5 +40,6 @@ public class ExitDetected : MonoBehaviour
     {
         onSpriteDown = true;
         OnButtonDown();
+        onSpriteDown = false;
     }
 }

@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class CubeManager : MonoBehaviour
@@ -8,6 +9,7 @@ public class CubeManager : MonoBehaviour
     private bool isWinPosition = false;
     private Camera cam;
     private Vector3 stonePosition;
+    private List<Vector3> cubeDefaultPositions = new List<Vector3>();
     private Vector3 targetPosition;//new Vector3((float)-0.803000008, (float)4.19700003, (float)4.40838623);
 
     public GameObject cubeCollider;
@@ -18,6 +20,8 @@ public class CubeManager : MonoBehaviour
     {
         cam = Camera.main;
         stonePosition = stone.transform.position;
+        foreach (var cube in cubes)
+            cubeDefaultPositions.Add(cube.transform.localEulerAngles);
     }
 
     public void Update()
@@ -37,7 +41,7 @@ public class CubeManager : MonoBehaviour
             }
             
         }
-        if (!cam.GetComponent<RotateRoom>().zoom && stonePosition != stone.transform.position)
+        if (!cam.GetComponent<RotateRoom>().zoom && stone == null)
         {
             cubeCollider.SetActive(false);
         }
@@ -51,5 +55,12 @@ public class CubeManager : MonoBehaviour
                 return;
         isWin = true;
 
+    }
+
+    public void ReturnToDefault()
+    {
+        if (!isWin)
+            for (int i = 0; i < cubes.Length; i++)
+                cubes[i].transform.localEulerAngles = cubeDefaultPositions[i];
     }
 }
