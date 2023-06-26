@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b79e44f57fee82e48be97f9455d356d0, type: 3}
   m_Name: Bird
   m_EditorClassIdentifier: 
-  Name: Bird
-  Description: Bird
-  icon: {fileID: 21300006, guid: 604f5780c1f434801a21a7dc6c41289b, type: 3}
+  Name: "\u0414\u0440\u0430\u0433\u043E\u0446\u0435\u043D\u043D\u044B\u0439 \u043A\u0430\u043C\u0435\u043D\u044C"
+  Description: "\u0421\u0438\u043D\u0438\u0439"
+  icon: {fileID: 21300000, guid: 8e02cd43349e7466f93bf719f9db9fad, type: 3}

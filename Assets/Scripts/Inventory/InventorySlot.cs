@@ -13,6 +13,7 @@ public class InventorySlot : MonoBehaviour
     {
         icon = gameObject.transform.GetChild(0).GetComponent<Image>();
         button = GetComponent<Button>();
+        button.onClick.AddListener(SlotClicked);
     }
 
     public void PutInSlot(Item item)
@@ -20,6 +21,10 @@ public class InventorySlot : MonoBehaviour
         icon.sprite = item.icon;
         SlotItem = item;
         icon.enabled = true;
+    }
+    void SlotClicked()
+    {
+        ItemInfo.instance.Open(SlotItem);
     }
 
 }
