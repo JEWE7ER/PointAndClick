@@ -122,10 +122,10 @@ public class RotateRoom : MonoBehaviour
         Vector3 startPosition;
         float distanceForMove = 6;
         if ((currentAngle == 1 || currentAngle == 4 || TempValueCamera.OnSpriteDown) &&
-            !((currentAngle == 1 || currentAngle == 4) && TempValueCamera.OnSpriteDown))
+            !((currentAngle == 1 || currentAngle == 4) && TempValueCamera.OnSpriteDown) && (TempValueCamera.NumWall % 2 == 0))
             distanceForMove *= -1;
 
-        if (currentAngle % 2 == 0 && TempValueCamera.NumWall % 2 == 0)
+        if (TempValueCamera.NumWall % 2 == 0)//if (currentAngle % 2 == 0 && TempValueCamera.NumWall % 2 == 0)
             startPosition = new Vector3(targetPosition.x + distanceForMove, targetPosition.y, targetPosition.z);
         else
             startPosition = new Vector3(targetPosition.x, targetPosition.y, targetPosition.z + distanceForMove);
