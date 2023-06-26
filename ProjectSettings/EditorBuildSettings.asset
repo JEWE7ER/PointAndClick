@@ -9,12 +9,12 @@ EditorBuildSettings:
     path: Assets/Saves/EntranceRoom.unity
     guid: 624df274c21c3a34e81cec384f205399
   - enabled: 1
-    path: Assets/Scenes/EntranceRoom.unity
+    path: Assets/Scenes/Scenes 0.1/EntranceRoom.unity
     guid: 311d5f8bb518d66498d055c4e1ab327d
   - enabled: 1
-    path: Assets/Scenes/TransitionRoom.unity
+    path: Assets/Scenes/Scenes 0.1/TransitionRoom.unity
     guid: 1f3975561380a6f4e84d59e2fe4b653f
   - enabled: 1
-    path: Assets/Scenes/ChestRroom.unity
+    path: Assets/Scenes/Scenes 0.1/ChestRroom.unity
     guid: e19f4895ecaf2024b92effeae91c594a
   m_configObjects: {}
