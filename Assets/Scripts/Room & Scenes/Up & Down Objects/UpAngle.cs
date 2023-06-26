@@ -47,7 +47,7 @@ public class UpAngle : MonoBehaviour
 
     void UpOrDown()
     {
-        if (numAngle != currentAngle)
+        if (Mathf.Abs(numAngle - currentAngle)==2)
         {
             targetPosition = new Vector3(transform.position.x, minY, transform.position.z);
             moveAngle = true;

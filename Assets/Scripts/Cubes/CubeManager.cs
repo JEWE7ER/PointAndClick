@@ -18,7 +18,6 @@ public class CubeManager : MonoBehaviour
     {
         cam = Camera.main;
         stonePosition = stone.transform.position;
-        targetPosition = new Vector3(transform.position.x, 1.68f, transform.position.z);
     }
 
     public void Update()
@@ -27,8 +26,16 @@ public class CubeManager : MonoBehaviour
         if (isWin && !isWinPosition)
         {
             foreach (var cube in cubes)
-                cube.transform.position = Vector3.MoveTowards(cube.transform.position, targetPosition, Time.deltaTime * 0.3f);
-            isWinPosition = true;
+            {
+                targetPosition = new Vector3(cube.transform.position.x, 1.68f, cube.transform.position.z);
+                cube.transform.position = Vector3.MoveTowards(cube.transform.position, targetPosition, Time.deltaTime);
+                if (cube.transform.position == targetPosition)
+                {
+                    isWinPosition = true;
+                    cube.gameObject.SetActive(false);
+                }
+            }
+            
         }
         if (!cam.GetComponent<RotateRoom>().zoom && stonePosition != stone.transform.position)
         {
