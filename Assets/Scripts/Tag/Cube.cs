@@ -11,17 +11,16 @@ public class Cube : MonoBehaviour
     private Vector3 moveY;
     private Vector3 targetPosition;
     private bool move = false;
-    private TagManager tagManager;
-    private GameObject triggerZones;
     private int speed;
 
+
+    public TagManager tagManager;
+    public GameObject triggerZones;
     public int number;
 
     // Start is called before the first frame update
     void Start()
     {
-        tagManager = GameObject.FindGameObjectWithTag("TagManager").GetComponent<TagManager>();
-        triggerZones = GameObject.FindGameObjectWithTag("TagTriggerZones");
         col = GetComponent<BoxCollider>();
         scaleX = transform.localScale.x;
         scaleY = transform.localScale.y;
@@ -30,7 +29,7 @@ public class Cube : MonoBehaviour
         speed = tagManager.speed;
     }
 
-    private void Update()
+    void FixedUpdate()
     {
         if (move)
         {

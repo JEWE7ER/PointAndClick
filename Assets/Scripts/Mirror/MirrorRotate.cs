@@ -17,10 +17,7 @@ public class MirrorRotate : MonoBehaviour
     {
         a = true;
         if (i > 8)
-        {
             i = 0;
-
-        }
     }
     void FixedUpdate()
     {
@@ -34,7 +31,7 @@ public class MirrorRotate : MonoBehaviour
         }
         if (a)
         {
-            transform.Rotate(rotate * Time.deltaTime * 5.0f);
+            transform.Rotate(5.0f * Time.deltaTime * rotate);
             if (i >= 9)
             {
                 a = false;

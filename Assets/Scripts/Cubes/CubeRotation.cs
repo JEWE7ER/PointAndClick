@@ -4,33 +4,33 @@ using UnityEngine;
 
 public class CubeRotation : MonoBehaviour
 {
-    public Manager1 manager;
     private Vector3 rotate = new Vector3(0, 0, -90);
-    private bool a = false;
+    private bool move = false;
+    private int countRotation;
 
-    private int i;
-   
+    public CubeManager cubeManager;
+
+
     void OnMouseDown()
     {
-        a = true;
-        if (i > 9)
+        if (!cubeManager.isWin && !move)
         {
-            i = 0;
-            
+            move = true;
+            if (countRotation > 9)
+                countRotation = 0;
         }
        
     }
     void FixedUpdate()
     {
-        if (a)
+        if (move)
         {
-            transform.Rotate(rotate * Time.deltaTime * 5.0f);
-            if (i >= 9)
-            {
-                a = false;
-            }
-            i += 1;
-            manager.win();
+            transform.Rotate(5.0f * Time.deltaTime * rotate);
+            if (countRotation >= 9)
+                move = false;
+
+            countRotation += 1;
+            cubeManager.Win();
             
         }
 

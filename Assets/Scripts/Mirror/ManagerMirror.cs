@@ -13,31 +13,19 @@ public class ManagerMirror : MonoBehaviour
         // && Math.Round(mirror[3].transform.localEulerAngles.z) == 330
 
         for (int i = 0; i < mirror.Length-1; i++)
-        {
-
-            if (Math.Round(mirror[i].transform.localEulerAngles.x / 10) * 10 == 350 || i == 1  && Math.Round(mirror[i].transform.localEulerAngles.x / 10) * 10 == 10)
-            {
-
-            }
-            else
-
-            {
+            if (!(Math.Round(mirror[i].transform.localEulerAngles.x / 10) * 10 == 350 || 
+                i == 1  && Math.Round(mirror[i].transform.localEulerAngles.x / 10) * 10 == 10))
                 return;
-            }
-
-        }
         isWin = true;
 
 
 
     }
-    // Update is called once per frame
+
     void Update()
     {
         if (isWin)
-        {
-            
-            mirror[3].transform.position = Vector3.Lerp(mirror[3].transform.position, new Vector3((float)-4.80585098, (float)1.19000006, (float)-2.07143688), Time.deltaTime * 0.8f);
-        }
+            mirror[3].transform.position = Vector3.Lerp(mirror[3].transform.position, 
+                new Vector3((float)-4.80585098, (float)1.19000006, (float)-2.07143688), Time.deltaTime * 0.8f);
     }
 }

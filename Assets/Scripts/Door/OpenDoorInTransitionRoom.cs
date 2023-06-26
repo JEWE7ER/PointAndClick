@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class OpenDoor : MonoBehaviour
+public class OpenDoorInTransitionRoom : MonoBehaviour
 {
     private bool fin = true;
 
@@ -12,7 +12,7 @@ public class OpenDoor : MonoBehaviour
     public GameObject spriteClose;
 
     public Vector3 rotating;
-    // Start is called before the first frame update
+
     void Start()
     {
         if (exit.activeSelf)
@@ -37,6 +37,6 @@ public class OpenDoor : MonoBehaviour
                 }
             }
         }
-        
+
     }
 }
