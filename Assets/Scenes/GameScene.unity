@@ -10158,7 +10158,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &910225790
 Transform:
   m_ObjectHideFlags: 0
@@ -10166,14 +10166,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 910225789}
-  m_LocalRotation: {x: 0.11135086, y: 0.8884969, z: -0.32338634, w: 0.305934}
-  m_LocalPosition: {x: 2, y: 3.3, z: -1.5}
+  m_LocalRotation: {x: 0.114168674, y: -0.88579327, z: 0.32240233, w: 0.31367594}
+  m_LocalPosition: {x: -1.8, y: 3.3, z: -1.5}
   m_LocalScale: {x: 1, y: 1.0000001, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1448544039}
   m_RootOrder: 3
-  m_LocalEulerAnglesHint: {x: 40, y: 142, z: 0}
+  m_LocalEulerAnglesHint: {x: 40, y: -141, z: 0}
 --- !u!81 &910225791
 AudioListener:
   m_ObjectHideFlags: 0
@@ -21476,11 +21476,11 @@ PrefabInstance:
       objectReference: {fileID: 1836704448}
     - target: {fileID: 2347436517628390388, guid: 4b1029c72142ced4e973f19ccdf088f2, type: 3}
       propertyPath: RotatePoint.x
-      value: 40.000004
+      value: 40
       objectReference: {fileID: 0}
     - target: {fileID: 2347436517628390388, guid: 4b1029c72142ced4e973f19ccdf088f2, type: 3}
       propertyPath: RotatePoint.y
-      value: -44
+      value: -141
       objectReference: {fileID: 0}
     - target: {fileID: 2347436517628390388, guid: 4b1029c72142ced4e973f19ccdf088f2, type: 3}
       propertyPath: RotatePoint.z
@@ -21488,15 +21488,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2347436517628390388, guid: 4b1029c72142ced4e973f19ccdf088f2, type: 3}
       propertyPath: PositionPoint.x
-      value: -1.6
+      value: -1.8
       objectReference: {fileID: 0}
     - target: {fileID: 2347436517628390388, guid: 4b1029c72142ced4e973f19ccdf088f2, type: 3}
       propertyPath: PositionPoint.y
-      value: 2.8
+      value: 3.3
       objectReference: {fileID: 0}
     - target: {fileID: 2347436517628390388, guid: 4b1029c72142ced4e973f19ccdf088f2, type: 3}
       propertyPath: PositionPoint.z
-      value: 2.2
+      value: -1.5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4b1029c72142ced4e973f19ccdf088f2, type: 3}
