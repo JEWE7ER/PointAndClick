@@ -5,11 +5,12 @@ using UnityEngine.UI;
 
 public class InventorySlot : MonoBehaviour
 {
-    public Item SlotItem;
-    Image icon;
-    Button button;
+    private Image icon;
+    private Button button;
 
-    private void Start()
+    public Item SlotItem;
+
+    void Start()
     {
         icon = gameObject.transform.GetChild(0).GetComponent<Image>();
         button = GetComponent<Button>();
@@ -22,7 +23,7 @@ public class InventorySlot : MonoBehaviour
         SlotItem = item;
         icon.enabled = true;
     }
-    void SlotClicked()
+    private void SlotClicked()
     {
         ItemInfo.instance.Open(SlotItem);
     }

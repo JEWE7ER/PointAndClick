@@ -6,7 +6,7 @@ public class Inventory : MonoBehaviour
 {
     public static Inventory instance;
     public Transform SlotsParent;
-    private InventorySlot[] inventorySlots = new InventorySlot[5];
+    private InventorySlot[] inventorySlots = new InventorySlot[9];
 
     private void Start()
     {

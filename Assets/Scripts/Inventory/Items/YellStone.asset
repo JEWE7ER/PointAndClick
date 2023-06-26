@@ -10,8 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b79e44f57fee82e48be97f9455d356d0, type: 3}
-  m_Name: Forest
+  m_Name: YellStone
   m_EditorClassIdentifier: 
-  Name: Tree
-  Description: Green Tree
-  icon: {fileID: 21300000, guid: 30f70590e904c43599c29dbb0663626b, type: 3}
+  Name: "\u0416\u0451\u043B\u0442\u044B\u0439 \u043A\u0430\u043C\u0435\u043D\u044C"
+  Description: 
+  icon: {fileID: 10901, guid: 0000000000000000f000000000000000, type: 0}

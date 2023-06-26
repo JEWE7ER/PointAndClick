@@ -3,37 +3,38 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
+using TMPro;
 
 public class ItemInfo : MonoBehaviour
 {
-    public static ItemInfo instance;
 
     private Image BackGround;
-    private Text Title;
-    private Text Description;
+    private TMP_Text Title;
     private Image Icon;
+
+    [SerializeField] Vector3 scale;
+    public static ItemInfo instance;
 
     private void Start()
     {
         instance = this;
 
         BackGround = GetComponent<Image>();
-        Title = transform.GetChild(0).GetComponent<Text>();
-        Description = transform.GetChild(1).GetComponent<Text>();
+        Title = transform.GetChild(0).GetComponent<TMP_Text>();
         // Icon = transform.GetChild(2).GetComponent<Image>();
     }
 
     public void ChangeInfo(Item item)
     {
-        Title.text = item.Name;
-        Description.text = item.Description;
+        if (item != null)
+            Title.text = item.Name;
         // Icon.sprite = item.icon;
     }
 
     public void Open(Item item)
     {
         ChangeInfo(item); 
-        gameObject.transform.localScale = Vector3.one;
+        gameObject.transform.localScale = scale;
     }
 
     public void Close()

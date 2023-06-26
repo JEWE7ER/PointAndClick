@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class PickUpObject : MonoBehaviour
 {
-    public Item item;
     private GameObject itemObj;
 
+    public Item item;
 
-    private void Start()
+    void Start()
     {
         itemObj = gameObject;
     }
@@ -17,7 +17,7 @@ public class PickUpObject : MonoBehaviour
     { 
         if (Input.GetKeyDown(KeyCode.Mouse0))
         {
-            gameObject.SetActive(false);
+            //gameObject.SetActive(false);
             Inventory.instance.PutInEmptySlot(item);
             Destroy(gameObject);
         }
