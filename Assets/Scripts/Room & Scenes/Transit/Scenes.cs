@@ -3,14 +3,9 @@ using UnityEngine.SceneManagement;
 
 public class Scenes : MonoBehaviour
 {
-    internal void LoadRoom(string Name)
+    public void LoadRoom()
     {
-        SceneManager.LoadScene(Name);
+        int index = SceneManager.GetActiveScene().buildIndex;
+        SceneManager.LoadScene(index);
     }
-
-    //internal void PrevRoom(string Name)
-    //{
-    //    var index = SceneManager.GetActiveScene().buildIndex;
-    //    SceneManager.LoadScene(Name);
-    //}
 }
