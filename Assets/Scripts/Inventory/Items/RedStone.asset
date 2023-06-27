@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: RedStone
   m_EditorClassIdentifier: 
   Name: "\u041A\u0440\u0430\u0441\u043D\u044B\u0439 \u043A\u0430\u043C\u0435\u043D\u044C"
-  index: 1
+  ItemID: 1
   icon: {fileID: 21300000, guid: 2fa79c7553973d04ea24c7dcfd3af522, type: 3}

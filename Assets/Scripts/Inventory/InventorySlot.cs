@@ -45,7 +45,7 @@ public class InventorySlot : MonoBehaviour
     {
         icon.sprite = item.icon;
         SlotItem = item;
-        ItemID = item.index;
+        ItemID = item.ItemID;
         icon.enabled = true;
         isFull = true;
     }

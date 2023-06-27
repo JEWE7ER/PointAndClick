@@ -8,6 +8,6 @@ public class Item : ScriptableObject
 {
     [Header("Базовые характеристики")]
     public string Name = " ";
-    public int index;
+    public int ItemID;
     public Sprite icon = null;
 }
