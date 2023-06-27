@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -32,6 +33,22 @@ public class Inventory : MonoBehaviour
         InventorySlot slot = SlotsParent.GetChild(inventorySlots.Count).GetComponent<InventorySlot>();
         slot.PutInSlot(item);
         inventorySlots.Add(slot);
+
+    }
+
+    public void DeleteSlot(InventorySlot currentSlot)
+    {
+        currentSlot.RemoveInSlot();
+        if (inventorySlots.Count == 1 || currentSlot == inventorySlots.Last())
+            goto RemoveFromList;
+        else
+        {
+            for (int i = inventorySlots.IndexOf(currentSlot); i < inventorySlots.Count - 1; i++)
+                inventorySlots[i].PutInSlot(inventorySlots[i + 1].SlotItem);
+            inventorySlots.Last().RemoveInSlot();
+        }
+    RemoveFromList:
+        inventorySlots.Remove(currentSlot);
 
     }
 }

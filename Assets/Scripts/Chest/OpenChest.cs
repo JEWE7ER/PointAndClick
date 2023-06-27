@@ -15,8 +15,14 @@ public class OpenChest : MonoBehaviour
 
     private void OnMouseDown()
     {
-        if(EventSystem.current.currentSelectedGameObject != null)
-            if (SelectedSlot.Get().GetComponent<InventorySlot>().ItemID == itemID)
+        if (EventSystem.current.currentSelectedGameObject != null) {
+            InventorySlot slot = SelectedSlot.Get().GetComponent<InventorySlot>();
+            if (slot.ItemID == itemID)
+            {
+                Inventory.instance.DeleteSlot(slot);
                 animator.enabled = true;
+
+            }
+        }
     }
 }
