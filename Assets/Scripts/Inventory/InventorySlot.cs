@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
+using static SelectedSlot;
 
 public class InventorySlot : MonoBehaviour
 { 
@@ -14,6 +15,7 @@ public class InventorySlot : MonoBehaviour
     private Image icon;
     private Button button;
     private ColorBlock colorsButton;
+    private int sibilingIndex;
 
 
     void Start()
@@ -25,7 +27,18 @@ public class InventorySlot : MonoBehaviour
         colorsButton.pressedColor = button.colors.normalColor; 
         colorsButton.selectedColor = button.colors.normalColor;
         button.colors = colorsButton;
+        sibilingIndex = transform.GetSiblingIndex();
+    }
 
+    void Update()
+    {
+        if (EventSystem.current.currentSelectedGameObject == null && SelectedSlot.Get() != null)
+        {
+            if (isClicked)
+            {
+                EventSystem.current.SetSelectedGameObject(SelectedSlot.Get());
+            }
+        }
     }
 
     public void PutInSlot(Item item)
@@ -36,15 +49,17 @@ public class InventorySlot : MonoBehaviour
         icon.enabled = true;
         isFull = true;
     }
+
     private void SlotClicked()
     {
         if (isFull)
         {
-            if (!button.name.Equals(EventSystem.current.currentSelectedGameObject.name))
+            SelectedSlot.Set(EventSystem.current.currentSelectedGameObject.name);
+            if (!SelectedSlot.IsSelected())
                 isClicked = false;
             if (!isClicked)
             {
-                ItemInfo.instance.Open(SlotItem);
+                ItemInfo.instance.Open(SlotItem, sibilingIndex);
                 isClicked = true;
                 colorsButton.selectedColor = button.colors.disabledColor;
                 button.colors = colorsButton;
@@ -60,15 +75,5 @@ public class InventorySlot : MonoBehaviour
         else
             EventSystem.current.SetSelectedGameObject(null);
         
-    }
-
-    private void ChangeColor()
-    {
-        if (!isClicked)
-            colorsButton.pressedColor = button.colors.disabledColor;
-        else
-            colorsButton.pressedColor = button.colors.normalColor;
-
-        button.colors = colorsButton;
     }
 }

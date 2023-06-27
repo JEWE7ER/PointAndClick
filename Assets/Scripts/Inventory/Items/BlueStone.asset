@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b79e44f57fee82e48be97f9455d356d0, type: 3}
   m_Name: BlueStone
   m_EditorClassIdentifier: 
-  Name: Blue Stone
+  Name: "\u0421\u0438\u043D\u0438\u0439 \u043A\u0430\u043C\u0435\u043D\u044C"
   index: 2
   icon: {fileID: 21300000, guid: fb8129f19d1911d41a2db5aa1444e2da, type: 3}

@@ -1,5 +1,6 @@
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 public class ZoomObjects : MonoBehaviour
@@ -58,6 +59,7 @@ public class ZoomObjects : MonoBehaviour
 
     public void TapOnButton()
     {
+        EventSystem.current.SetSelectedGameObject(null);
         moveToDefault = true;
         backButton.gameObject.SetActive(false);
         this.gameObject.SetActive(true);

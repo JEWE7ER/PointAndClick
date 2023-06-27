@@ -13,6 +13,7 @@ public class ItemInfo : MonoBehaviour
     private Image Icon;
 
     [SerializeField] Vector3 scale;
+    [SerializeField] Vector3 defaultPosition;
     public static ItemInfo instance;
 
     private void Start()
@@ -31,10 +32,13 @@ public class ItemInfo : MonoBehaviour
         // Icon.sprite = item.icon;
     }
 
-    public void Open(Item item)
+    public void Open(Item item, int coefficient)
     {
         ChangeInfo(item); 
         gameObject.transform.localScale = scale;
+        gameObject.transform.localPosition = new Vector3(defaultPosition.x,
+                                                    defaultPosition.y - 117.0f * coefficient,
+                                                    defaultPosition.z);
     }
 
     public void Close()
