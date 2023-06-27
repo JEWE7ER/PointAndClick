@@ -6,8 +6,8 @@ using UnityEngine;
 
 public class Item : ScriptableObject
 {
-    [Header("Базвоые характеристики")]
+    [Header("Базовые характеристики")]
     public string Name = " ";
-    public string Description = "Описание предмета";
+    public int index;
     public Sprite icon = null;
 }
