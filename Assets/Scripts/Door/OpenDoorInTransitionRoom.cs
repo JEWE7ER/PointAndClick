@@ -6,12 +6,12 @@ public class OpenDoorInTransitionRoom : MonoBehaviour
 {
     private bool fin = true;
 
-    public TagManager tagManager;
+    public ManagerMirror mirrorManager;
     public GameObject exit;
     public GameObject spriteOpen;
     public GameObject spriteClose;
 
-    public Vector3 rotating;
+    public Vector3 position;
 
     void Start()
     {
@@ -21,13 +21,13 @@ public class OpenDoorInTransitionRoom : MonoBehaviour
 
     void Update()
     {
-        if (tagManager.isWin && fin)
+        if (mirrorManager.isWin && fin)
         {
-            if (transform.localEulerAngles == rotating)
+            if (transform.position.z >= position.z)
                 fin = false;
             else
             {
-                transform.localEulerAngles = rotating;
+                transform.position = Vector3.MoveTowards(transform.position, position, Time.deltaTime);
                 if (!exit.activeSelf)
                     exit.SetActive(true);
                 if (spriteClose.activeSelf)

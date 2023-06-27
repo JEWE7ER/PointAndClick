@@ -4,21 +4,15 @@ using UnityEngine;
 
 public class MirrorRotate : MonoBehaviour
 {
-    public ManagerMirror manager;
     private Vector3 rotate = new Vector3(0, -10, 0);
-    private bool a = false;
+    private bool move = false;
+    private int countRotation;
 
-    private int i;
+    public ManagerMirror mirrorManager;
     //Vector3(330,0,90) Vector3(330,0,90)
     //Vector3(340.000031,180,270) Vector3(330.000031,180,270)
     //Vector3(330,0,90) Vector3(330,0,90)
-    
-    void OnMouseDown()
-    {
-        a = true;
-        if (i > 8)
-            i = 0;
-    }
+
     void FixedUpdate()
     {
         if (transform.localEulerAngles.x >= 20 && transform.localEulerAngles.x < 100) 
@@ -29,16 +23,25 @@ public class MirrorRotate : MonoBehaviour
         {
             rotate = new Vector3(0, -10, 0);
         }
-        if (a)
+        if (move)
         {
             transform.Rotate(5.0f * Time.deltaTime * rotate);
-            if (i >= 9)
+            if (countRotation >= 9)
             {
-                a = false;
+                move = false;
             }
-            i += 1;
-            manager.win();
+            countRotation += 1;
+            mirrorManager.Win();
 
+        }
+    }
+    void OnMouseDown()
+    {
+        if (!mirrorManager.isWin && !move)
+        {
+            move = true;
+            if (countRotation > 8)
+                countRotation = 0;
         }
     }
 }
