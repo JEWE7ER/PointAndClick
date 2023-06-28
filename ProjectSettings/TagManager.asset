@@ -20,6 +20,7 @@ TagManager:
   - TransitionRoom
   - ChestRoom
   - GameManager
+  - StoneZones
   layers:
   - Default
   - TransparentFX
