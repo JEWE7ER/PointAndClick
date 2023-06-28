@@ -7,6 +7,7 @@ public class ManagerMirror : MonoBehaviour
 {
     public MirrorRotate[] mirror;
     public bool isWin = false;
+    
     public void Win()
     {
         //&& Math.Round(mirror[1].transform.localEulerAngles.x) == 330 
