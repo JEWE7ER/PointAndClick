@@ -6,7 +6,7 @@ using UnityEngine.EventSystems;
 public class OpenChest : MonoBehaviour
 {
     private Animator animator;
-
+    public key key;
     public int itemID;
     void Start()
     {
@@ -19,6 +19,7 @@ public class OpenChest : MonoBehaviour
             InventorySlot slot = SelectedSlot.Get().GetComponent<InventorySlot>();
             if (slot.ItemID == itemID)
             {
+                key.OpenKey();
                 Inventory.instance.DeleteSlot(slot);
                 animator.enabled = true;
 
