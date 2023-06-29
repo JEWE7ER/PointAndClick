@@ -13,5 +13,6 @@ MonoBehaviour:
   m_Name: GreenStone
   m_EditorClassIdentifier: 
   Name: "\u0417\u0435\u043B\u0435\u043D\u044B\u0439 \u043A\u0430\u043C\u0435\u043D\u044C"
-  ItemID: 5
+  ItemID: 4
   icon: {fileID: 21300000, guid: e57e241061bdabd46ac5726cbde61190, type: 3}
+  targetObject: {fileID: 7858198418868861935, guid: c119851be394c7f458e70baaa0438641, type: 3}

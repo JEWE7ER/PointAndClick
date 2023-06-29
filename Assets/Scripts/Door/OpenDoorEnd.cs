@@ -2,12 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class OpenDoorInTransitionRoom : MonoBehaviour
+public class OpenDoorEnd : MonoBehaviour
 {
     private bool fin = true;
-    private Camera cam;
 
-    public ManagerMirror mirrorManager;
+    public StonksManager stoneManager;
     public GameObject exit;
     public GameObject spriteOpen;
     public GameObject spriteClose;
@@ -16,25 +15,22 @@ public class OpenDoorInTransitionRoom : MonoBehaviour
 
     void Start()
     {
-        cam = Camera.main;
         if (exit.activeSelf)
             exit.SetActive(false);
     }
 
     void Update()
     {
-        if (mirrorManager.isWin && fin)
+        if (stoneManager.isWin && fin)
         {
-            cam.GetComponent<RotateRoom>().zoom = true;
-            if (transform.localPosition.x <= position.x)
+            if (transform.localPosition == position)
             {
                 fin = false;
                 gameObject.SetActive(false);
-                cam.GetComponent<RotateRoom>().zoom = false;
             }
             else
             {
-                transform.localPosition = Vector3.MoveTowards(transform.localPosition, position, Time.deltaTime);
+                transform.localPosition = position;
                 if (!exit.activeSelf)
                     exit.SetActive(true);
                 if (spriteClose.activeSelf)

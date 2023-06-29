@@ -11,7 +11,7 @@ public class InventorySlot : MonoBehaviour
     
     internal Item SlotItem;
     internal int ItemID;
-
+    internal GameObject targetObject;
 
     private Image icon;
     private Image image;
@@ -57,6 +57,7 @@ public class InventorySlot : MonoBehaviour
         isFull = true;
         button.enabled = true;
         image.enabled = true;
+        this.targetObject = item.targetObject;
     }
 
     public void RemoveInSlot() {  
@@ -70,6 +71,7 @@ public class InventorySlot : MonoBehaviour
         isClicked = false;
         button.enabled = false;
         image.enabled = false;
+        this.targetObject = null;
     }
 
     private void SlotClicked()

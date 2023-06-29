@@ -10,4 +10,5 @@ public class Item : ScriptableObject
     public string Name = " ";
     public int ItemID;
     public Sprite icon = null;
+    public GameObject targetObject;
 }

@@ -13,5 +13,6 @@ MonoBehaviour:
   m_Name: YellStone
   m_EditorClassIdentifier: 
   Name: "\u0416\u0451\u043B\u0442\u044B\u0439 \u043A\u0430\u043C\u0435\u043D\u044C"
-  ItemID: 4
+  ItemID: 5
   icon: {fileID: 21300000, guid: 6a68b705aa1b4544588c7f190fbe76b9, type: 3}
+  targetObject: {fileID: 1526880222504193309, guid: c13ad35f5ecf33f4e8d613f5a92b7e0f, type: 3}

@@ -15,3 +15,4 @@ MonoBehaviour:
   Name: "\u0424\u0438\u043E\u043B\u0435\u0442\u043E\u0432\u044B\u0439 \u043A\u0430\u043C\u0435\u043D\u044C"
   ItemID: 3
   icon: {fileID: 21300000, guid: f7add59290523934398fb53bcbdf52f5, type: 3}
+  targetObject: {fileID: 1874403166778133188, guid: e0cdbb13c8b2cc74b8000145e297021d, type: 3}

@@ -21,6 +21,7 @@ TagManager:
   - ChestRoom
   - GameManager
   - StoneZones
+  - BoxStone
   layers:
   - Default
   - TransparentFX

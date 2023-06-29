@@ -48,7 +48,7 @@ public class Inventory : MonoBehaviour
             inventorySlots.Last().RemoveInSlot();
         }
     RemoveFromList:
-        inventorySlots.Remove(currentSlot);
+        inventorySlots.Remove(inventorySlots.Last());
 
     }
 }

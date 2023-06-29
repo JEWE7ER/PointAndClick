@@ -5,10 +5,13 @@ using UnityEngine.EventSystems;
 
 public class NumberStone : MonoBehaviour
 {
-    public StonksManager stonksManager;
+    private GameObject cloneStone;
+
+    public StonksManager stoneManager;
     public int numberStone;
-    public int[] itemID;
+    public int[] itemsID;
     public int slotID;
+    [SerializeField] Vector3 positionStone;
 
     private void OnMouseDown()
     {
@@ -16,16 +19,19 @@ public class NumberStone : MonoBehaviour
         {
             InventorySlot slot = SelectedSlot.Get().GetComponent<InventorySlot>();
             slotID = slot.ItemID;
-            foreach (var item in itemID)
+            foreach (var itemID in itemsID)
             {
-                if (slot.ItemID == item)
+                if (slot.ItemID == itemID)
                 {
+                    cloneStone = Instantiate(slot.targetObject);//, positionStone, slot.targetObject.transform.rotation);
+                    cloneStone.transform.parent = GameObject.FindGameObjectWithTag("BoxStone").transform.parent;
+                    cloneStone.transform.localPosition = positionStone;
                     Inventory.instance.DeleteSlot(slot);
-
+                    break;
                 }
             }
         }
-        stonksManager.Win();
+        stoneManager.Win();
     }
 
 }
