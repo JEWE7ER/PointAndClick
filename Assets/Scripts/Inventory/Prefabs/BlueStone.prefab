@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 584237822934315598}
   - component: {fileID: 2730329684560580471}
   m_Layer: 0
-  m_Name: BlueStone Variant
+  m_Name: BlueStone
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
