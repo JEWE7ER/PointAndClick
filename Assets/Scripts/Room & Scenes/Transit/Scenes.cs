@@ -8,4 +8,8 @@ public class Scenes : MonoBehaviour
         int index = SceneManager.GetActiveScene().buildIndex;
         SceneManager.LoadScene(index);
     }
+    public void Exit()
+    {
+        Application.Quit();
+    }
 }
