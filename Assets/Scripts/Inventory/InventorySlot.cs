@@ -83,16 +83,22 @@ public class InventorySlot : MonoBehaviour
                 isClicked = false;
             if (!isClicked)
             {
-                ItemInfo.instance.Open(SlotItem, siblingIndex);
                 isClicked = true;
+                if (targetObject.GetComponent<Show>() != null)
+                    targetObject.GetComponent<Show>().ShowText();
+                else
+                    ItemInfo.instance.Open(SlotItem, siblingIndex);
                 colorsButton.selectedColor = button.colors.disabledColor;
                 button.colors = colorsButton;
             }
             else
             {
-                ItemInfo.instance.Close();
-                EventSystem.current.SetSelectedGameObject(null);
                 isClicked = false;
+                if (targetObject.GetComponent<Show>() != null)
+                    targetObject.GetComponent<Show>().HideText();
+                else
+                    ItemInfo.instance.Close();
+                EventSystem.current.SetSelectedGameObject(null);
                 //colorsButton.selectedColor = button.colors.normalColor;
             }
         }

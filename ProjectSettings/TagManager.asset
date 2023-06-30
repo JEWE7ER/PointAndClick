@@ -23,6 +23,8 @@ TagManager:
   - StoneZones
   - BoxStone
   - Floor
+  - UICamera
+  - UIBox
   layers:
   - Default
   - TransparentFX
@@ -35,10 +37,10 @@ TagManager:
   - NavMesh
   - BackgroundImage
   - DistantHotspot
+  - Text
   - TrashUI
   - Inventory
   - BackToRoom
-  - 
   - 
   - 
   - 

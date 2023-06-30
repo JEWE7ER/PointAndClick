@@ -16,6 +16,7 @@ public class ExitDetected : MonoBehaviour
 
     public void OnButtonDown()
     {
+
         EventSystem.current.SetSelectedGameObject(null);
         cam = Camera.main;
         if (!cam.GetComponent<RotateRoom>().cameraMove)
