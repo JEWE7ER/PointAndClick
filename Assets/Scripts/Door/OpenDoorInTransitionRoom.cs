@@ -5,7 +5,6 @@ using UnityEngine;
 public class OpenDoorInTransitionRoom : MonoBehaviour
 {
     private bool fin = true;
-    private Camera cam;
 
     public ManagerMirror mirrorManager;
     public GameObject exit;
@@ -16,7 +15,6 @@ public class OpenDoorInTransitionRoom : MonoBehaviour
 
     void Start()
     {
-        cam = Camera.main;
         if (exit.activeSelf)
             exit.SetActive(false);
     }
@@ -25,18 +23,16 @@ public class OpenDoorInTransitionRoom : MonoBehaviour
     {
         if (mirrorManager.isWin && fin)
         {
-            cam.GetComponent<RotateRoom>().zoom = true;
             if (transform.localPosition.x <= position.x)
             {
                 fin = false;
                 gameObject.SetActive(false);
-                cam.GetComponent<RotateRoom>().zoom = false;
+                if (!exit.activeSelf)
+                    exit.SetActive(true);
             }
             else
             {
                 transform.localPosition = Vector3.MoveTowards(transform.localPosition, position, Time.deltaTime);
-                if (!exit.activeSelf)
-                    exit.SetActive(true);
                 if (spriteClose.activeSelf)
                 {
                     spriteClose.SetActive(false);
