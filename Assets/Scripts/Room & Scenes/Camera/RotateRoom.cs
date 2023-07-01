@@ -25,6 +25,7 @@ public class RotateRoom : MonoBehaviour
 
     void Start()
     {
+        BorderedRoom = TempValueCamera.NameRoom.Equals(RoomWithBorders);
         targetPosition = transform.position;
         EngineSwipe.SwipeEvent += OnSwipe;
     }
