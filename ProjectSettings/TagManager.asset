@@ -25,6 +25,7 @@ TagManager:
   - Floor
   - UICamera
   - UIBox
+  - TextStone
   layers:
   - Default
   - TransparentFX
