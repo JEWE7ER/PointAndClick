@@ -4,21 +4,23 @@ using UnityEngine;
 
 public class Show : MonoBehaviour
 {
-    private GameObject parent;
+    //private GameObject parent;
 
     public Canvas text;
 
     internal void ShowText()
     {
+        //text.worldCamera = GameObject.FindGameObjectWithTag("UICamera").GetComponent<Camera>();
+        text.GetComponent<Canvas>().worldCamera = GameObject.FindGameObjectWithTag("UICamera").GetComponent<Camera>();
         Instantiate(text);
-        text.worldCamera = GameObject.FindGameObjectWithTag("UICamera").GetComponent<Camera>();
+        
         //parent = GameObject.FindGameObjectWithTag("UIBox");
         //text.transform.parent = parent.transform;
         //text.transform.SetAsFirstSibling();
     }
     internal void HideText()
     {
-        text.enabled = false;
-        DestroyImmediate(text, true);
+        //text.enabled = false;
+        Destroy(GameObject.FindGameObjectWithTag("TextStone"));
     }
 }
