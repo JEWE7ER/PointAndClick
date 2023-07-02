@@ -9,12 +9,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7674380476724260679}
-<<<<<<< HEAD
-=======
   - component: {fileID: 7674380476724260676}
   - component: {fileID: 268797612}
   - component: {fileID: 268797613}
->>>>>>> 893d7af27e8f9ad6657cfcfd21e072cc4f4b12e3
   m_Layer: 11
   m_Name: ScrollStoneCanvas
   m_TagString: TextStone
@@ -44,8 +41,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
-<<<<<<< HEAD
-=======
 --- !u!223 &7674380476724260676
 Canvas:
   m_ObjectHideFlags: 0
@@ -107,7 +102,6 @@ MonoBehaviour:
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
   m_PresetInfoIsWorld: 0
->>>>>>> 893d7af27e8f9ad6657cfcfd21e072cc4f4b12e3
 --- !u!1 &7674380477517241242
 GameObject:
   m_ObjectHideFlags: 0
