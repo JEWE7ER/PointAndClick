@@ -61,7 +61,7 @@ public class End : MonoBehaviour
             text1.gameObject.SetActive(true);
         }
 
-        if (k == 8)
+        if (k == 13)
         {
             text1.gameObject.SetActive(false);
             text2.gameObject.SetActive(true);
