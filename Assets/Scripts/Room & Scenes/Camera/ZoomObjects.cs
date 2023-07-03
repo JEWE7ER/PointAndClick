@@ -50,7 +50,7 @@ public class ZoomObjects : MonoBehaviour
             DefaultRotateCamera = cam.transform.eulerAngles;
             moveToPoint = true;
             backButton.gameObject.SetActive(true);
-            coefficient = 1.5f;
+            coefficient = 2.5f;
             target.transform.position = PositionPoint;
             target.transform.eulerAngles = RotatePoint;
             cam.GetComponent<RotateRoom>().zoom = true;
@@ -65,7 +65,7 @@ public class ZoomObjects : MonoBehaviour
         this.gameObject.SetActive(true);
         target.transform.position = DefaultPositionCamera;
         target.transform.eulerAngles = DefaultRotateCamera;
-        coefficient = 2.5f;
+        coefficient = 4.0f;
     }
 
     private void MoveCamera(ref bool move, GameObject target)

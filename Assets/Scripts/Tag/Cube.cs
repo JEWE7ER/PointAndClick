@@ -22,8 +22,8 @@ public class Cube : MonoBehaviour
     void Start()
     {
         col = GetComponent<BoxCollider>();
-        scaleX = transform.localScale.x;
-        scaleY = transform.localScale.y;
+        scaleX = transform.localScale.x * transform.parent.parent.localScale.x;
+        scaleY = transform.localScale.y * transform.parent.parent.localScale.y;
         moveX = new Vector3(scaleX, 0, 0);
         moveY = new Vector3(0, scaleY, 0);
         speed = tagManager.speed;

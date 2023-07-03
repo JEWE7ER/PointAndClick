@@ -8,10 +8,8 @@ public class OpenDoor : MonoBehaviour
 
     public TagManager tagManager;
     public GameObject exit;
-    public GameObject spriteOpen;
-    public GameObject spriteClose;
 
-    public Vector3 rotating;
+    public Vector3 position;
     // Start is called before the first frame update
     void Start()
     {
@@ -21,21 +19,17 @@ public class OpenDoor : MonoBehaviour
 
     void Update()
     {
-        if (tagManager.isWin && fin)
+        if (tagManager.isWin && fin && !Camera.main.GetComponent<RotateRoom>().zoom)
         {
-            if (transform.localEulerAngles == rotating)
-                fin = false;
-            else
+            if (transform.localPosition.y <= position.y)
             {
-                transform.localEulerAngles = rotating;
+                fin = false;
+                gameObject.SetActive(false);
                 if (!exit.activeSelf)
                     exit.SetActive(true);
-                if (spriteClose.activeSelf)
-                {
-                    spriteClose.SetActive(false);
-                    spriteOpen.SetActive(true);
-                }
             }
+            else
+                transform.localPosition = Vector3.MoveTowards(transform.localPosition, position, Time.deltaTime);
         }
         
     }
