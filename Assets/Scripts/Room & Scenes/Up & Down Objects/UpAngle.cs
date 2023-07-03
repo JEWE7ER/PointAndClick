@@ -11,6 +11,7 @@ public class UpAngle : MonoBehaviour
     public int numAngle;
     public float minY = 2.8f;
     public float maxY = 10.0f;
+    public float speed;
 
     void Start()
     {
@@ -27,7 +28,7 @@ public class UpAngle : MonoBehaviour
             if (currentAngle != oldAngle)
                 UpOrDown();
             if (moveAngle)
-                transform.position = Vector3.MoveTowards(transform.position, targetPosition, cam.GetComponent<RotateRoom>().speed * 7.5f * Time.deltaTime);
+                transform.position = Vector3.MoveTowards(transform.position, targetPosition, speed * 7.5f * Time.deltaTime);
 
             if (transform.position == targetPosition)
                 moveAngle = false;
