@@ -6,7 +6,7 @@ public class Scenes : MonoBehaviour
     public void LoadRoom()
     {
         int index = SceneManager.GetActiveScene().buildIndex;
-        SceneManager.LoadScene(index);
+        SceneManager.LoadScene(index + 1);
     }
     public void Exit()
     {
