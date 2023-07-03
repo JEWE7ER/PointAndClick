@@ -19,8 +19,8 @@ public class End : MonoBehaviour
     void Start()
     {
         
-        targetPosition = new Vector3(0, -5 , 0);
-        startPosition = new Vector3(0, 5, 0);
+        targetPosition = new Vector3(-5, -5 , 0);
+        startPosition = new Vector3(5, 5, 0);
     }
 
     // Update is called once per frame
