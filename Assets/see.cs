@@ -16,12 +16,12 @@ public class see : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKey(Right))
+        if (Input.GetKey(Right) && i == 0 )
         {
             gameObject.SetActive(true);
             i += 1;
         }
-        else if (Input.GetKey(Left))
+        else if (Input.GetKey(Left) && i == 0)
         {     
             gameObject.SetActive(true);
             i += 1;
