@@ -8,5 +8,5 @@ public static class TempValueCamera
     internal static int CurrentAngle { get; set; } = 0;
     internal static bool OnSpriteDown { get; set; }
     internal static int NumWall { get; set; }
-    internal static string NameRoom { get; set; } = "EntranceRoom";
+    internal static string NameRoom { get; set; } = "";
 }
