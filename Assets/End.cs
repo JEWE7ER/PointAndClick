@@ -8,16 +8,19 @@ public class End : MonoBehaviour
     private Vector3 targetPosition;
     private Vector3 startPosition;
     public Canvas canva;
+    public GameObject text1;
+    public GameObject text2;
     private bool move = false;
-    private int i = 1;
+    private int i = 0;
     public int speed;
     public Camera camera;
     private int k = 0;
     // Start is called before the first frame update
     void Start()
     {
-        targetPosition = new Vector3(7, 7, -12);
-        startPosition = new Vector3(12, 7, -7);
+        
+        targetPosition = new Vector3(-5, -5 , 0);
+        startPosition = new Vector3(5, 5, 0);
     }
 
     // Update is called once per frame
@@ -33,15 +36,17 @@ public class End : MonoBehaviour
         {
             if (i < 10)
             {
-                camera.transform.position = Vector3.MoveTowards(startPosition, targetPosition, speed * Time.deltaTime);
+                camera.transform.Rotate(5.0f * Time.deltaTime * startPosition);
+                //camera.transform.position = Vector3.MoveTowards(startPosition, targetPosition, speed * Time.deltaTime);
                 i++;
             }
             else
             {
-                camera.transform.position = Vector3.MoveTowards(targetPosition, startPosition, speed * Time.deltaTime);
+                camera.transform.Rotate(5.0f * Time.deltaTime * targetPosition);
+                //camera.transform.position = Vector3.MoveTowards(targetPosition, startPosition, speed * Time.deltaTime);
                 i++;
             }
-            if (i > 20)
+            if (i > 19)
             {
                 i = 0;
                 k++;
@@ -50,9 +55,16 @@ public class End : MonoBehaviour
             
 
         }
-        if (k == 2)
+        if (k == 1)
         {
             canva.gameObject.SetActive(true);
+            text1.gameObject.SetActive(true);
+        }
+
+        if (k == 13)
+        {
+            text1.gameObject.SetActive(false);
+            text2.gameObject.SetActive(true);
         }
 
 
